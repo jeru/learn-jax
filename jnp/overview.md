@@ -4,6 +4,9 @@ Reference page: https://docs.jax.dev/en/latest/jax.numpy.html
 
 ## Pointwise functions
 
+[`where`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.where.html#jax.numpy.where "jax.numpy.where")(condition[, x, y, size, fill_value])
+: the asynchronized and multidimensional `if-then-else`.
+
 ### Math
 
 [`abs`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.abs.html#jax.numpy.abs "jax.numpy.abs")(x, /)
@@ -177,6 +180,8 @@ Reference page: https://docs.jax.dev/en/latest/jax.numpy.html
 [`greater`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.greater.html#jax.numpy.greater "jax.numpy.greater")(x, y, /)
 [`greater_equal`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.greater_equal.html#jax.numpy.greater_equal "jax.numpy.greater_equal")(x, y, /)
 
+[`isclose`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isclose.html#jax.numpy.isclose "jax.numpy.isclose")(a, b[, rtol, atol, equal_nan])
+
 [`maximum`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.maximum.html#jax.numpy.maximum "jax.numpy.maximum")
 [`fmax`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.fmax.html#jax.numpy.fmax "jax.numpy.fmax")(x1, x2)
 [`minimum`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.minimum.html#jax.numpy.minimum "jax.numpy.minimum")
@@ -223,6 +228,16 @@ Reference page: https://docs.jax.dev/en/latest/jax.numpy.html
 
 [`i0`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.i0.html#jax.numpy.i0 "jax.numpy.i0")(x)
 : some version of modified Bessel function (related to multiplication of gaussians).
+
+## Set (the set-theory set)
+
+[`intersect1d`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.intersect1d.html#jax.numpy.intersect1d "jax.numpy.intersect1d")(ar1, ar2[, assume_unique, ...])
+
+[`union1d`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.union1d.html#jax.numpy.union1d "jax.numpy.union1d")(ar1, ar2, *[, size, fill_value])
+
+[`setdiff1d`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.setdiff1d.html#jax.numpy.setdiff1d "jax.numpy.setdiff1d")(ar1, ar2[, assume_unique, size, ...])
+
+[`setxor1d`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.setxor1d.html#jax.numpy.setxor1d "jax.numpy.setxor1d")(ar1, ar2[, assume_unique, size, ...])
 
 ## Reducing functions
 
@@ -278,6 +293,9 @@ Reference page: https://docs.jax.dev/en/latest/jax.numpy.html
 
 ## Array
 
+[`shape`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.shape.html#jax.numpy.shape "jax.numpy.shape")(a)
+: shape of an array.
+
 [`array`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.array.html#jax.numpy.array "jax.numpy.array")(object[, dtype, copy, order, ndmin, ...])
 [`asarray`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.asarray.html#jax.numpy.asarray "jax.numpy.asarray")(a[, dtype, order, copy, device, ...])
 : Array construction from `object`, where the object can be things like python native numbers, lists, etc.
@@ -289,8 +307,20 @@ Two versions have some subtle differences.
 [`copy`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.copy.html#jax.numpy.copy "jax.numpy.copy")(a[, order])
 : copy an array.
 
+[`fromfunction`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.fromfunction.html#jax.numpy.fromfunction "jax.numpy.fromfunction")(function, shape, *[, dtype])
+: array by calling `function` on array indices.
+
 [`arange`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.arange.html#jax.numpy.arange "jax.numpy.arange")(start[, stop, step, dtype, device, ...])
 : Like python `range()`.
+
+[`linspace`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.linspace.html#jax.numpy.linspace "jax.numpy.linspace")(start, stop[, num, endpoint, ...])
+: evenly spaced.
+
+[`logspace`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.logspace.html#jax.numpy.logspace "jax.numpy.logspace")(start, stop[, num, endpoint, base, ...])
+: logarithmically spaced.
+
+[`geomspace`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.geomspace.html#jax.numpy.geomspace "jax.numpy.geomspace")(start, stop[, num, endpoint, ...])
+: geometrically spaced.
 
 [`atleast_1d`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.atleast_1d.html#jax.numpy.atleast_1d "jax.numpy.atleast_1d")(*arys)
 [`atleast_2d`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.atleast_2d.html#jax.numpy.atleast_2d "jax.numpy.atleast_2d")(*arys)
@@ -372,6 +402,9 @@ TODO: check again.
 [`kron`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.kron.html#jax.numpy.kron "jax.numpy.kron")(a, b)
 : Kronecker product.
 
+[`vander`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.vander.html#jax.numpy.vander "jax.numpy.vander")(x[, N, increasing])
+: Vandermonde matrix (a[i,j] = x[i]**j).
+
 ## Shape manipulation
 
 [`reshape`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.reshape.html#jax.numpy.reshape "jax.numpy.reshape")(a, shape[, order, copy, out_sharding])
@@ -395,6 +428,15 @@ TODO: check again.
 [`expand_dims`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.expand_dims.html#jax.numpy.expand_dims "jax.numpy.expand_dims")(a, axis)
 : expand 1 dimension along axis (i.e., x -> [x]).
 
+[`unstack`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.unstack.html#jax.numpy.unstack "jax.numpy.unstack")(x, /, *[, axis])
+[`split`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.split.html#jax.numpy.split "jax.numpy.split")(ary, indices_or_sections[, axis])
+[`stack`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.stack.html#jax.numpy.stack "jax.numpy.stack")(arrays[, axis, out, dtype])
+: split/stack/unstack along an axis.
+
+[`vsplit`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.vsplit.html#jax.numpy.vsplit "jax.numpy.vsplit")(ary, indices_or_sections)
+[`vstack`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.vstack.html#jax.numpy.vstack "jax.numpy.vstack")(tup[, dtype])
+: vertically (axis 0) split and stack.
+
 [`hsplit`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.hsplit.html#jax.numpy.hsplit "jax.numpy.hsplit")(ary, indices_or_sections)
 [`hstack`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.hstack.html#jax.numpy.hstack "jax.numpy.hstack")(tup[, dtype])
 : horizontally (axis 1) split and stack.
@@ -408,6 +450,8 @@ TODO: check again.
 [`array_repr`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.array_repr.html#jax.numpy.array_repr "jax.numpy.array_repr")(arr[, max_line_width, precision, ...])
 
 [`array_str`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.array_str.html#jax.numpy.array_str "jax.numpy.array_str")(a[, max_line_width, precision, ...])
+
+[`fromstring`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.fromstring.html#jax.numpy.fromstring "jax.numpy.fromstring")(string[, dtype, count])
 
 ## Selection, Sorting
 
@@ -425,12 +469,6 @@ TODO: check again.
 [`argsort`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.argsort.html#jax.numpy.argsort "jax.numpy.argsort")(a[, axis, kind, order, stable, ...])
 
 ## Types
-
-[`can_cast`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.can_cast.html#jax.numpy.can_cast "jax.numpy.can_cast")(from_, to[, casting])
-: NOT ASYNC. Help function to test whether one type can be casted to another. Just returns True/False, simple value, not in the array container.
-
-[`dtype`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.dtype.html#jax.numpy.dtype "jax.numpy.dtype")(dtype[, align, copy])
-: NOT ASYNC. A type object. TODO: take another look.
 
 [`generic`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.generic.html#jax.numpy.generic "jax.numpy.generic")()
 : base class of "most" scalar types.
@@ -473,6 +511,36 @@ TODO: check again.
 [`cdouble`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.cdouble.html#jax.numpy.cdouble "jax.numpy.cdouble")
 [`complex_`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.complex_.html#jax.numpy.complex_ "jax.numpy.complex_")
 : numpy's complex128, with 64-bit real and 64-bit imaginary.
+
+### Type operations
+
+[`can_cast`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.can_cast.html#jax.numpy.can_cast "jax.numpy.can_cast")(from_, to[, casting])
+: NOT ASYNC. Help function to test whether one type can be casted to another. Just returns True/False, simple value, not in the array container.
+
+[`dtype`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.dtype.html#jax.numpy.dtype "jax.numpy.dtype")(dtype[, align, copy])
+: NOT ASYNC. A type object. TODO: take another look.
+
+[`iinfo`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.iinfo.html#jax.numpy.iinfo "jax.numpy.iinfo")(int_type)
+[`finfo`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.finfo.html#jax.numpy.finfo "jax.numpy.finfo")(dtype)
+: NOT ASYNC. Some interesting metadata about integer or floating point types.
+
+[`isdtype`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isdtype.html#jax.numpy.isdtype "jax.numpy.isdtype")(dtype, kind)
+: NOT ASYNC.
+
+[`issubdtype`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.issubdtype.html#jax.numpy.issubdtype "jax.numpy.issubdtype")(arg1, arg2)
+: NOT ASYNC.
+
+[`isscalar`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isscalar.html#jax.numpy.isscalar "jax.numpy.isscalar")(element)
+: NOT ASYNC.
+
+[`isrealobj`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isrealobj.html#jax.numpy.isrealobj "jax.numpy.isrealobj")(x)
+: whether it is a non-complex, or an array of non-complex numbers.
+
+[`iscomplexobj`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.iscomplexobj.html#jax.numpy.iscomplexobj "jax.numpy.iscomplexobj")(x)
+: whether it is a complex, or an array of complex.
+
+[`iscomplex`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.iscomplex.html#jax.numpy.iscomplex "jax.numpy.iscomplex")(x)
+: whether it is a complex.
 
 ### Abstract base classes
 
@@ -553,6 +621,10 @@ TODO: check again.
 
 [`quantile`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.quantile.html#jax.numpy.quantile "jax.numpy.quantile")(a, q[, axis, out, overwrite_input, ...])
 
+[`std`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.std.html#jax.numpy.std "jax.numpy.std")(a[, axis, dtype, out, ddof, keepdims, ...])
+
+[`var`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.var.html#jax.numpy.var "jax.numpy.var")(a[, axis, dtype, out, ddof, keepdims, ...])
+
 ### Versions ignoring NaN
 
 [`nanprod`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.nanprod.html#jax.numpy.nanprod "jax.numpy.nanprod")(a[, axis, dtype, out, keepdims, ...])
@@ -605,6 +677,9 @@ TODO: check again.
 
 [`digitize`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.digitize.html#jax.numpy.digitize "jax.numpy.digitize")(x, bins[, right, method])
 
+[`isin`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isin.html#jax.numpy.isin "jax.numpy.isin")(element, test_elements[, ...])
+: each of `element` is mapped to a boolean: whether this element is in `test_elements` (another array as collection).
+
 ### Window
 
 [`bartlett`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.bartlett.html#jax.numpy.bartlett "jax.numpy.bartlett")(M)
@@ -616,4 +691,34 @@ TODO: check again.
 [`hanning`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.hanning.html#jax.numpy.hanning "jax.numpy.hanning")(M)
 
 [`kaiser`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.kaiser.html#jax.numpy.kaiser "jax.numpy.kaiser")(M, beta)
+
+### Probably don't care much
+
+Either too trivial or not quite relevant to model training/inference.
+
+[`ComplexWarning`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.ComplexWarning.html#jax.numpy.ComplexWarning "jax.numpy.ComplexWarning")
+
+[`frombuffer`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.frombuffer.html#jax.numpy.frombuffer "jax.numpy.frombuffer")(buffer[, dtype, count, offset])
+
+[`get_printoptions`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.get_printoptions.html#jax.numpy.get_printoptions "jax.numpy.get_printoptions")()
+[`set_printoptions`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.set_printoptions.html#jax.numpy.set_printoptions "jax.numpy.set_printoptions")(*args, **kwargs)
+: simply forwarded to numpy ([this](https://numpy.org/doc/stable/reference/generated/numpy.get_printoptions.html#numpy.get_printoptions) and [this](https://numpy.org/doc/stable/reference/generated/numpy.set_printoptions.html#numpy.set_printoptions)).
+
+
+[`from_dlpack`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.from_dlpack.html#jax.numpy.from_dlpack "jax.numpy.from_dlpack")(x, /, *[, device, copy])
+
+[`load`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.load.html#jax.numpy.load "jax.numpy.load")(file, *args, **kwargs)
+[`save`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.save.html#jax.numpy.save "jax.numpy.save")(file, arr[, allow_pickle])
+: from/to .npy file.
+
+[`savez`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.savez.html#jax.numpy.savez "jax.numpy.savez")(file, *args[, allow_pickle])
+: save to .npz file. (No load? too asymmetric...)
+
+#### Not even impelemented
+
+Even the jax developers don't care about these :-)
+
+[`fromfile`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.fromfile.html#jax.numpy.fromfile "jax.numpy.fromfile")(*args, **kwargs)
+
+[`fromiter`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.fromiter.html#jax.numpy.fromiter "jax.numpy.fromiter")(*args, **kwargs)
 
