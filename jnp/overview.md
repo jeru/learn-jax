@@ -146,6 +146,9 @@ Reference page: https://docs.jax.dev/en/latest/jax.numpy.html
 [`lcm`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.lcm.html#jax.numpy.lcm "jax.numpy.lcm")(x1, x2)
 : least common multiplier.
 
+[`hypot`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.hypot.html#jax.numpy.hypot "jax.numpy.hypot")(x1, x2, /): hypotenuse (assuming `x1` and `x2` are sides of the right angle).
+
+[`ldexp`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.ldexp.html#jax.numpy.ldexp "jax.numpy.ldexp")(x1, x2, /): x1 * (2**x2).
 
 #### Rounding
 
@@ -205,6 +208,22 @@ Reference page: https://docs.jax.dev/en/latest/jax.numpy.html
 [`bitwise_count`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.bitwise_count.html#jax.numpy.bitwise_count "jax.numpy.bitwise_count")(x, /)
 : count bit 1s. Eg., 255 has 8 bits of 1s.
 
+[`isnan`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isnan.html#jax.numpy.isnan "jax.numpy.isnan")(x, /)
+[`isfinite`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isfinite.html#jax.numpy.isfinite "jax.numpy.isfinite")(x, /)
+[`isinf`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isinf.html#jax.numpy.isinf "jax.numpy.isinf")(x, /)
+[`isneginf`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isneginf.html#jax.numpy.isneginf "jax.numpy.isneginf")(x, /[, out])
+[`isposinf`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isposinf.html#jax.numpy.isposinf "jax.numpy.isposinf")(x, /[, out])
+
+[`isreal`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isreal.html#jax.numpy.isreal "jax.numpy.isreal")(x)
+
+#### Others
+
+[`heaviside`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.heaviside.html#jax.numpy.heaviside "jax.numpy.heaviside")(x1, x2, /)
+: the "heaviside" function: 0 if x1 < 0; 1 if x1 > 0; x2 if x1 is just 0.
+
+[`i0`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.i0.html#jax.numpy.i0 "jax.numpy.i0")(x)
+: some version of modified Bessel function (related to multiplication of gaussians).
+
 ## Reducing functions
 
 ### Logic, Compare-ish
@@ -225,16 +244,6 @@ Reference page: https://docs.jax.dev/en/latest/jax.numpy.html
 [`allclose`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.allclose.html#jax.numpy.allclose "jax.numpy.allclose")(a, b[, rtol, atol, equal_nan])
 : all are respectively pairwise close.
 
-[`max`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.max.html#jax.numpy.max "jax.numpy.max")(a[, axis, out, keepdims, initial, where])
-[`amax`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.amax.html#jax.numpy.amax "jax.numpy.amax")(a[, axis, out, keepdims, initial, where])
-[`min`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.min.html#jax.numpy.min "jax.numpy.min")(a[, axis, out, keepdims, initial, where])
-[`amin`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.amin.html#jax.numpy.amin "jax.numpy.amin")(a[, axis, out, keepdims, initial, where])
-: taking max/min along axis.
-
-[`argmax`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.argmax.html#jax.numpy.argmax "jax.numpy.argmax")(a[, axis, out, keepdims])
-[`argmin`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.argmin.html#jax.numpy.argmin "jax.numpy.argmin")(a[, axis, out, keepdims])
-: index version of max/min.
-
 ### Arithmetic
 
 [`einsum`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.einsum.html#jax.numpy.einsum "jax.numpy.einsum")(subscripts, /, *operands[, out, ...])
@@ -252,16 +261,14 @@ Reference page: https://docs.jax.dev/en/latest/jax.numpy.html
 [`inner`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.inner.html#jax.numpy.inner "jax.numpy.inner")(a, b, *[, precision, ...])
 : inner product.
 
+[`outer`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.outer.html#jax.numpy.outer "jax.numpy.outer")(a, b[, out])
+: outer product (a[i] * b[j])_ij.
+
+[`matvec`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.matvec.html#jax.numpy.matvec "jax.numpy.matvec")(x1, x2, /)
+: matrix times vector.
+
 [`cross`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.cross.html#jax.numpy.cross "jax.numpy.cross")(a, b[, axisa, axisb, axisc, axis])
 : the `axis*` params designate along which axis of `a`, `b` and the return value `c` to perform cross product. Inputs 3D along the axes result in output 3D; input 2D result in output 1D.
-
-[`average`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.average.html#jax.numpy.average "jax.numpy.average")(a[, axis, weights, returned, keepdims])
-
-[`size`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.size.html#jax.numpy.size "jax.numpy.size")(a[, axis])
-: along the axis, simply count the elements.
-
-[`count_nonzero`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.count_nonzero.html#jax.numpy.count_nonzero "jax.numpy.count_nonzero")(a[, axis, keepdims])
-: along the axis, count how many nonzeros.
 
 [`sum`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.sum.html#jax.numpy.sum "jax.numpy.sum")(a[, axis, dtype, out, keepdims, ...])
 : sum along the axis.
@@ -322,6 +329,9 @@ TODO: check again.
 
 ### Matrix-like
 
+[`matrix_transpose`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.matrix_transpose.html#jax.numpy.matrix_transpose "jax.numpy.matrix_transpose")(x, /)
+: when the array is higher dimension, transpose the last two dimensions.
+
 [`zeros`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.zeros.html#jax.numpy.zeros "jax.numpy.zeros")(shape[, dtype, device, out_sharding])
 [`empty`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.empty.html#jax.numpy.empty "jax.numpy.empty")(shape[, dtype, device, out_sharding])
 [`zeros_like`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.zeros_like.html#jax.numpy.zeros_like "jax.numpy.zeros_like")(a[, dtype, shape, device, ...])
@@ -346,8 +356,21 @@ TODO: check again.
 [`diagonal`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.diagonal.html#jax.numpy.diagonal "jax.numpy.diagonal")(a[, offset, axis1, axis2])
 : use `axis1` and `axis2` to designate the array's "matrix" dimensions, then extract diagnals.
 
+[`diagflat`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.diagflat.html#jax.numpy.diagflat "jax.numpy.diagflat")(v[, k])
+: similar to `diag`'s 1D->2D version, but `v` can be multi-dimensional and will be flattened into 1D. (Why?)
+
 [`fill_diagonal`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.fill_diagonal.html#jax.numpy.fill_diagonal "jax.numpy.fill_diagonal")(a, val[, wrap, inplace])
 : return a copy, with the diagnal elements overwritten (off-dignal elements are kept as is).
+
+[`diag_indices`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.diag_indices.html#jax.numpy.diag_indices "jax.numpy.diag_indices")(n[, ndim])
+[`diag_indices_from`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.diag_indices_from.html#jax.numpy.diag_indices_from "jax.numpy.diag_indices_from")(arr)
+: indices of an array that point to diagnal elements.
+
+[`block`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.block.html#jax.numpy.block "jax.numpy.block")(arrays)
+: array from "sub"-arrays like gluing sub-matrices into a matrix.
+
+[`kron`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.kron.html#jax.numpy.kron "jax.numpy.kron")(a, b)
+: Kronecker product.
 
 ## Shape manipulation
 
@@ -372,6 +395,14 @@ TODO: check again.
 [`expand_dims`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.expand_dims.html#jax.numpy.expand_dims "jax.numpy.expand_dims")(a, axis)
 : expand 1 dimension along axis (i.e., x -> [x]).
 
+[`hsplit`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.hsplit.html#jax.numpy.hsplit "jax.numpy.hsplit")(ary, indices_or_sections)
+[`hstack`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.hstack.html#jax.numpy.hstack "jax.numpy.hstack")(tup[, dtype])
+: horizontally (axis 1) split and stack.
+
+[`dsplit`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.dsplit.html#jax.numpy.dsplit "jax.numpy.dsplit")(ary, indices_or_sections)
+[`dstack`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.dstack.html#jax.numpy.dstack "jax.numpy.dstack")(tup[, dtype])
+: depth-wise (axis 2) split and stack.
+
 ### Debug-related
 
 [`array_repr`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.array_repr.html#jax.numpy.array_repr "jax.numpy.array_repr")(arr[, max_line_width, precision, ...])
@@ -394,6 +425,15 @@ TODO: check again.
 [`argsort`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.argsort.html#jax.numpy.argsort "jax.numpy.argsort")(a[, axis, kind, order, stable, ...])
 
 ## Types
+
+[`can_cast`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.can_cast.html#jax.numpy.can_cast "jax.numpy.can_cast")(from_, to[, casting])
+: NOT ASYNC. Help function to test whether one type can be casted to another. Just returns True/False, simple value, not in the array container.
+
+[`dtype`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.dtype.html#jax.numpy.dtype "jax.numpy.dtype")(dtype[, align, copy])
+: NOT ASYNC. A type object. TODO: take another look.
+
+[`generic`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.generic.html#jax.numpy.generic "jax.numpy.generic")()
+: base class of "most" scalar types.
 
 [`bool_`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.bool_.html#jax.numpy.bool_ "jax.numpy.bool_")
 : alias of python `bool`.
@@ -445,6 +485,9 @@ TODO: check again.
 [`integer`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.integer.html#jax.numpy.integer "jax.numpy.integer")()
 : ABC of integers.
 
+[`unsignedinteger`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.unsignedinteger.html#jax.numpy.unsignedinteger "jax.numpy.unsignedinteger")()
+: ABC of unsigned integers.
+
 [`signedinteger`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.signedinteger.html#jax.numpy.signedinteger "jax.numpy.signedinteger")()
 : ABC of signed integers.
 
@@ -457,7 +500,27 @@ TODO: check again.
 [`complexfloating`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.complexfloating.html#jax.numpy.complexfloating "jax.numpy.complexfloating")()
 : ABC of all float-point-based complex numbers.
 
+[`character`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.character.html#jax.numpy.character "jax.numpy.character")()
+: ABC of, "character string".
+
 ## Advanced calcuation
+
+[`gradient`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.gradient.html#jax.numpy.gradient "jax.numpy.gradient")(f, *varargs[, axis, edge_order])
+: gradient.
+
+[`convolve`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.convolve.html#jax.numpy.convolve "jax.numpy.convolve")(a, v[, mode, precision, ...])
+: convolution (but only for 1d arrays? no tensors?).
+
+[`correlate`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.correlate.html#jax.numpy.correlate "jax.numpy.correlate")(a, v[, mode, precision, ...])
+: a construction looking like a variant of `convolve`. TODO: take another look.
+
+[`diff`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.diff.html#jax.numpy.diff "jax.numpy.diff")(a[, n, axis, prepend, append])
+: n'th order difference, along axis.
+
+[`ediff1d`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.ediff1d.html#jax.numpy.ediff1d "jax.numpy.ediff1d")(ary[, to_end, to_begin])
+: a different, weaker version of `diff` but with a subtly different interface (append/prepend happens after not before diffing).
+
+### Statistics
 
 [`cumulative_sum`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.cumulative_sum.html#jax.numpy.cumulative_sum "jax.numpy.cumulative_sum")(x, /, *[, axis, dtype, ...])
 [`cumsum`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.cumsum.html#jax.numpy.cumsum "jax.numpy.cumsum")(a[, axis, dtype, out])
@@ -465,15 +528,82 @@ TODO: check again.
 [`cumprod`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.cumprod.html#jax.numpy.cumprod "jax.numpy.cumprod")(a[, axis, dtype, out])
 : cummulative (prefix) sum/prod along the given axis.
 
-[`convolve`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.convolve.html#jax.numpy.convolve "jax.numpy.convolve")(a, v[, mode, precision, ...])
-: convolution (but only for 1d arrays? no tensors?).
+[`average`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.average.html#jax.numpy.average "jax.numpy.average")(a[, axis, weights, returned, keepdims])
+[`mean`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.mean.html#jax.numpy.mean "jax.numpy.mean")(a[, axis, dtype, out, keepdims, where])
 
-[`diff`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.diff.html#jax.numpy.diff "jax.numpy.diff")(a[, n, axis, prepend, append])
-: n'th order difference, along axis.
+[`median`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.median.html#jax.numpy.median "jax.numpy.median")(a[, axis, out, overwrite_input, keepdims])
+
+[`size`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.size.html#jax.numpy.size "jax.numpy.size")(a[, axis])
+: along the axis, simply count the elements.
+
+[`count_nonzero`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.count_nonzero.html#jax.numpy.count_nonzero "jax.numpy.count_nonzero")(a[, axis, keepdims])
+: along the axis, count how many nonzeros.
+
+[`max`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.max.html#jax.numpy.max "jax.numpy.max")(a[, axis, out, keepdims, initial, where])
+[`amax`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.amax.html#jax.numpy.amax "jax.numpy.amax")(a[, axis, out, keepdims, initial, where])
+[`min`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.min.html#jax.numpy.min "jax.numpy.min")(a[, axis, out, keepdims, initial, where])
+[`amin`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.amin.html#jax.numpy.amin "jax.numpy.amin")(a[, axis, out, keepdims, initial, where])
+: taking max/min along axis.
+
+[`argmax`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.argmax.html#jax.numpy.argmax "jax.numpy.argmax")(a[, axis, out, keepdims])
+[`argmin`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.argmin.html#jax.numpy.argmin "jax.numpy.argmin")(a[, axis, out, keepdims])
+: index version of max/min.
+
+[`percentile`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.percentile.html#jax.numpy.percentile "jax.numpy.percentile")(a, q[, axis, out, ...])
+
+[`quantile`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.quantile.html#jax.numpy.quantile "jax.numpy.quantile")(a, q[, axis, out, overwrite_input, ...])
+
+### Versions ignoring NaN
+
+[`nanprod`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.nanprod.html#jax.numpy.nanprod "jax.numpy.nanprod")(a[, axis, dtype, out, keepdims, ...])
+
+[`nansum`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.nansum.html#jax.numpy.nansum "jax.numpy.nansum")(a[, axis, dtype, out, keepdims, ...])
+
+[`nanmean`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.nanmean.html#jax.numpy.nanmean "jax.numpy.nanmean")(a[, axis, dtype, out, keepdims, where])
+
+[`nanmedian`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.nanmedian.html#jax.numpy.nanmedian "jax.numpy.nanmedian")(a[, axis, out, overwrite_input, ...])
+
+[`nanmax`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.nanmax.html#jax.numpy.nanmax "jax.numpy.nanmax")(a[, axis, out, keepdims, initial, where])
+
+[`nanmin`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.nanmin.html#jax.numpy.nanmin "jax.numpy.nanmin")(a[, axis, out, keepdims, initial, where])
+
+[`nanargmax`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.nanargmax.html#jax.numpy.nanargmax "jax.numpy.nanargmax")(a[, axis, out, keepdims])
+
+[`nanargmin`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.nanargmin.html#jax.numpy.nanargmin "jax.numpy.nanargmin")(a[, axis, out, keepdims])
+
+[`nancumprod`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.nancumprod.html#jax.numpy.nancumprod "jax.numpy.nancumprod")(a[, axis, dtype, out])
+
+[`nancumsum`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.nancumsum.html#jax.numpy.nancumsum "jax.numpy.nancumsum")(a[, axis, dtype, out])
+
+[`nanpercentile`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.nanpercentile.html#jax.numpy.nanpercentile "jax.numpy.nanpercentile")(a, q[, axis, out, ...])
+
+[`nanquantile`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.nanquantile.html#jax.numpy.nanquantile "jax.numpy.nanquantile")(a, q[, axis, out, ...])
+
+[`nanstd`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.nanstd.html#jax.numpy.nanstd "jax.numpy.nanstd")(a[, axis, dtype, out, ddof, ...])
+
+[`nanvar`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.nanvar.html#jax.numpy.nanvar "jax.numpy.nanvar")(a[, axis, dtype, out, ddof, ...])
+
+### More
+
+[`cov`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.cov.html#jax.numpy.cov "jax.numpy.cov")(m[, y, rowvar, bias, ddof, fweights, ...])
+: correlation matrix.
+
+[`corrcoef`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.corrcoef.html#jax.numpy.corrcoef "jax.numpy.corrcoef")(x[, y, rowvar, dtype])
+: Pearson correlation coefficients.
+
+[`histogram`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.histogram.html#jax.numpy.histogram "jax.numpy.histogram")(a[, bins, range, weights, density])
+[`histogram2d`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.histogram2d.html#jax.numpy.histogram2d "jax.numpy.histogram2d")(x, y[, bins, range, weights, ...])
+[`histogramdd`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.histogramdd.html#jax.numpy.histogramdd "jax.numpy.histogramdd")(sample[, bins, range, weights, ...])
+: 1D, 2D and N-dim histogram.
+
+[`histogram_bin_edges`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.histogram_bin_edges.html#jax.numpy.histogram_bin_edges "jax.numpy.histogram_bin_edges")(a[, bins, range, weights])
+: edges of bins of histogram.
 
 ## Misc (TODO: revisit all and classify properly)
 
 [`bincount`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.bincount.html#jax.numpy.bincount "jax.numpy.bincount")(x[, weights, minlength, length])
+
+[`digitize`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.digitize.html#jax.numpy.digitize "jax.numpy.digitize")(x, bins[, right, method])
 
 ### Window
 
