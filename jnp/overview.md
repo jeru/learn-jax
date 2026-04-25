@@ -72,3 +72,9 @@ Listed [here](reduction-statistics.md).
 Listed [here](polynomial-set.md).
 
 A little bit exotic in model training.
+
+## Types
+
+Listed [here](types.md).
+
+Good to know.

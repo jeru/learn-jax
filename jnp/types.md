@@ -1,5 +1,6 @@
-## Types
+# Types
 
+## Available types
 [`generic`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.generic.html#jax.numpy.generic "jax.numpy.generic")()
 : base class of "most" scalar types.
 
@@ -45,44 +46,7 @@
 [`complex_`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.complex_.html#jax.numpy.complex_ "jax.numpy.complex_")
 : numpy's complex128, with 64-bit real and 64-bit imaginary.
 
-### Type operations
-
-[`can_cast`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.can_cast.html#jax.numpy.can_cast "jax.numpy.can_cast")(from_, to[, casting])
-: NOT ASYNC. Help function to test whether one type can be casted to another. Just returns True/False, simple value, not in the array container.
-
-[`dtype`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.dtype.html#jax.numpy.dtype "jax.numpy.dtype")(dtype[, align, copy])
-: NOT ASYNC. A type object. TODO: take another look.
-
-[`iinfo`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.iinfo.html#jax.numpy.iinfo "jax.numpy.iinfo")(int_type)
-[`finfo`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.finfo.html#jax.numpy.finfo "jax.numpy.finfo")(dtype)
-: NOT ASYNC. Some interesting metadata about integer or floating point types.
-
-[`isdtype`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isdtype.html#jax.numpy.isdtype "jax.numpy.isdtype")(dtype, kind)
-: NOT ASYNC.
-
-[`issubdtype`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.issubdtype.html#jax.numpy.issubdtype "jax.numpy.issubdtype")(arg1, arg2)
-: NOT ASYNC.
-
-[`isscalar`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isscalar.html#jax.numpy.isscalar "jax.numpy.isscalar")(element)
-: NOT ASYNC.
-
-[`iterable`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.iterable.html#jax.numpy.iterable "jax.numpy.iterable")(y)
-: NOT ASYNC. Whether the object is iterable.
-
-[`promote_types`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.promote_types.html#jax.numpy.promote_types "jax.numpy.promote_types")(a, b)
-[`result_type`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.result_type.html#jax.numpy.result_type "jax.numpy.result_type")(*args)
-: NOT ASYNC. A common type to hold a binary calculation between `a` and `b`. Eg., `promote_types('float32', 'int32') == dtype('float32')`.
-
-[`isrealobj`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isrealobj.html#jax.numpy.isrealobj "jax.numpy.isrealobj")(x)
-: whether it is a non-complex, or an array of non-complex numbers.
-
-[`iscomplexobj`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.iscomplexobj.html#jax.numpy.iscomplexobj "jax.numpy.iscomplexobj")(x)
-: whether it is a complex, or an array of complex.
-
-[`iscomplex`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.iscomplex.html#jax.numpy.iscomplex "jax.numpy.iscomplex")(x)
-: whether it is a complex.
-
-### Abstract base classes
+## Abstract base classes
 
 [`flexible`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.flexible.html#jax.numpy.flexible "jax.numpy.flexible")()
 : ABC of all scalar types "without predefined length".
@@ -110,3 +74,42 @@
 
 [`character`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.character.html#jax.numpy.character "jax.numpy.character")()
 : ABC of, "character string".
+
+## Operations on types themselves
+
+[`dtype`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.dtype.html#jax.numpy.dtype "jax.numpy.dtype")(dtype[, align, copy])
+: a type object.
+
+[`can_cast`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.can_cast.html#jax.numpy.can_cast "jax.numpy.can_cast")(from_, to[, casting])
+: help function to test whether one type can be casted to another. Just returns True/False, simple value, not in the array container.
+
+[`iinfo`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.iinfo.html#jax.numpy.iinfo "jax.numpy.iinfo")(int_type)
+[`finfo`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.finfo.html#jax.numpy.finfo "jax.numpy.finfo")(dtype)
+: some interesting metadata about integer or floating point types.
+
+[`isdtype`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isdtype.html#jax.numpy.isdtype "jax.numpy.isdtype")(dtype, kind)
+: help function to test types. `kind` can narrow down test ranges.
+
+[`issubdtype`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.issubdtype.html#jax.numpy.issubdtype "jax.numpy.issubdtype")(arg1, arg2)
+: help function to test subtyping.
+
+[`isscalar`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isscalar.html#jax.numpy.isscalar "jax.numpy.isscalar")(element)
+
+[`iterable`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.iterable.html#jax.numpy.iterable "jax.numpy.iterable")(y)
+: whether the object is iterable.
+
+[`promote_types`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.promote_types.html#jax.numpy.promote_types "jax.numpy.promote_types")(a, b)
+[`result_type`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.result_type.html#jax.numpy.result_type "jax.numpy.result_type")(*args)
+: a common type to hold a binary/other calculation between `a` and `b`. Eg., `promote_types('float32', 'int32') == dtype('float32')`.
+
+## Operations on values
+
+[`isrealobj`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isrealobj.html#jax.numpy.isrealobj "jax.numpy.isrealobj")(x)
+: whether it is a non-complex, or an array of non-complex numbers.
+
+[`iscomplexobj`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.iscomplexobj.html#jax.numpy.iscomplexobj "jax.numpy.iscomplexobj")(x)
+: whether it is a complex, or an array of complex.
+
+[`iscomplex`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.iscomplex.html#jax.numpy.iscomplex "jax.numpy.iscomplex")(x)
+: whether it is a complex.
+
