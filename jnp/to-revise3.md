@@ -121,10 +121,6 @@ Eg., `ix_([a0, a1, a2, a3], [b0, b1, b2])` will try to generate `(x, y)` so when
 [`rot90`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.rot90.html#jax.numpy.rot90 "jax.numpy.rot90")(m[, k, axes])
 : `axes` is a 2-tuple defining the rotation plane; the whole array's each plane will be rotated 90 degrees CCW.
 
-[`concat`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.concat.html#jax.numpy.concat "jax.numpy.concat")(arrays, /, *[, axis])
-[`concatenate`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.concatenate.html#jax.numpy.concatenate "jax.numpy.concatenate")(arrays[, axis, dtype])
-: concatenate the given sequence of arrays along the given axis.
-
 [`trim_zeros`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.trim_zeros.html#jax.numpy.trim_zeros "jax.numpy.trim_zeros")(filt[, trim, axis])
 : remove leading and/or trailing zeros from array `filt`.
 When in higher dimensions, eg., in 2D, a leading/trailing row/column will be removed if it is all-zero.

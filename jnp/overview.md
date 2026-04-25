@@ -30,8 +30,6 @@ Array([[2, 3, 4],
        [4, 5, 6]], dtype=int32)
 ```
 
-There are also a few functions that allow a user do explicit broadcasting, like 2->6. Such kind of non-one broadcasting is not allowed in the implicit setup.
-
 ## Elementwise functions
 
 Listed [here](elementwise.md).
@@ -47,3 +45,12 @@ Listed [here](matrix-multiplication-plus.md).
 
 Key takes:
 * If you decide to only learn one thing here, learn `einsum`. Most other stuff here is just a special case of `einsum`.
+
+## Shape manipulation
+
+Listed [here](shape-manipulation.md).
+
+Matrix transpose is also listed inside this.
+
+Key takes:
+* Useful stuff with a strong feeling of data plumbing. Like gluing two inputs together to feed into a new module, etc.
