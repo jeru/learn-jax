@@ -42,3 +42,8 @@ Key takes:
 * The existence of functions like `expm1`, `log1p` and `logaddexp` exposes how tricky sometimes numerical stability can be. This is very relevant in model training as well.
 
 ## Matrix-multiplication+
+
+Listed [here](matrix-multiplication-plus.md).
+
+Key takes:
+* If you decide to only learn one thing here, learn `einsum`. Most other stuff here is just a special case of `einsum`.

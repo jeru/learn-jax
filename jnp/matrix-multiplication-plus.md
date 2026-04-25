@@ -1,10 +1,14 @@
 # Matrix multiplication plus
 
+This section covers the operations like loop through axis 1 and axis 2, multiple the results, then add them together. Typical matrix multiplication stuff, but with more choices in the higher-dimensional space.
+
 [`einsum`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.einsum.html#jax.numpy.einsum "jax.numpy.einsum")(subscripts, /, *operands[, out, ...])
 : the swiss army knife of matrix-multiplication-like operatoins.
 
 [`einsum_path`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.einsum_path.html#jax.numpy.einsum_path "jax.numpy.einsum_path")(subscripts, /, *operands[, optimize])
 : some extra utility to help `einsum`?
+
+### Einsum special cases
 
 [`matmul`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.matmul.html#jax.numpy.matmul "jax.numpy.matmul")(a, b, *[, precision, ...])
 : matrix multiplication.
