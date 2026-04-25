@@ -1,13 +1,3 @@
-## Set (the set-theory set)
-
-[`intersect1d`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.intersect1d.html#jax.numpy.intersect1d "jax.numpy.intersect1d")(ar1, ar2[, assume_unique, ...])
-
-[`union1d`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.union1d.html#jax.numpy.union1d "jax.numpy.union1d")(ar1, ar2, *[, size, fill_value])
-
-[`setdiff1d`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.setdiff1d.html#jax.numpy.setdiff1d "jax.numpy.setdiff1d")(ar1, ar2[, assume_unique, size, ...])
-
-[`setxor1d`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.setxor1d.html#jax.numpy.setxor1d "jax.numpy.setxor1d")(ar1, ar2[, assume_unique, size, ...])
-
 ## Reducing functions
 
 ### Logic, Compare-ish

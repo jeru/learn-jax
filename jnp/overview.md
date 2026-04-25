@@ -39,13 +39,6 @@ Key takes:
 * Be careful about integer modulo when it comes to negative operands. Always tricky in every single language, and cannot be made consistent across all. Noticeably jnp (and numpy) isn't consistent with C/C++.
 * The existence of functions like `expm1`, `log1p` and `logaddexp` exposes how tricky sometimes numerical stability can be. This is very relevant in model training as well.
 
-## Matrix-multiplication+
-
-Listed [here](matrix-multiplication-plus.md).
-
-Key takes:
-* If you decide to only learn one thing here, learn `einsum`. Most other stuff here is just a special case of `einsum`.
-
 ## Shape manipulation
 
 Listed [here](shape-manipulation.md).
@@ -54,3 +47,24 @@ Matrix transpose is also listed inside this.
 
 Key takes:
 * Useful stuff with a strong feeling of data plumbing. Like gluing two inputs together to feed into a new module, etc.
+
+## Array operations
+
+Listed [here](array-ops.md). Matrix-multiplication-like stuff are listed separately (not here).
+
+Key takes:
+* Very necessary stuff. Some parts feel very mathematical.
+* All kinds of construction of basic values, and operations.
+
+## Matrix-multiplication+
+
+Listed [here](matrix-multiplication-plus.md).
+
+Key takes:
+* If you decide to only learn one thing here, learn `einsum`. Most other stuff here is just a special case of `einsum`.
+
+## Polynomial and set
+
+Listed [here](polynomial-set.md).
+
+A little bit exotic in model training.

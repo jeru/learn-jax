@@ -184,36 +184,6 @@ When in higher dimensions, eg., in 2D, a leading/trailing row/column will be rem
 [`take_along_axis`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.take_along_axis.html#jax.numpy.take_along_axis "jax.numpy.take_along_axis")(arr, indices[, axis, mode, ...])
 : the `axis` specifies which dimension the choice happens and the `indices` are within that dimension.
 
-## Polynomial
-
-Polynomial is represented as a 1D array (of its coefficients). Note that it is reverse-indexed, eg., [1, 2, 3] is `1 * x**2 + 2 * x + 3`.
-
-[`polyval`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.polyval.html#jax.numpy.polyval "jax.numpy.polyval")(p, x, *[, unroll])
-: evaluate the polynomial at `x`.
-
-[`poly`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.poly.html#jax.numpy.poly "jax.numpy.poly")(seq_of_zeros)
-: given the roots, construct a polynomial.
-
-[`roots`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.roots.html#jax.numpy.roots "jax.numpy.roots")(p, *[, strip_zeros])
-: given a polynomial, compute roots.
-
-[`polyadd`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.polyadd.html#jax.numpy.polyadd "jax.numpy.polyadd")(a1, a2)
-[`polysub`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.polysub.html#jax.numpy.polysub "jax.numpy.polysub")(a1, a2)
-: add/subtract two polynomials. Difference from elementwise add/subtract: the two polynomials can have different lengths.
-
-[`polymul`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.polymul.html#jax.numpy.polymul "jax.numpy.polymul")(a1, a2, *[, trim_leading_zeros])
-: multiple of two polynomials.
-
-[`polydiv`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.polydiv.html#jax.numpy.polydiv "jax.numpy.polydiv")(u, v, *[, trim_leading_zeros])
-: divide and returns the quotient and remainder.
-
-[`polyder`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.polyder.html#jax.numpy.polyder "jax.numpy.polyder")(p[, m])
-[`polyint`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.polyint.html#jax.numpy.polyint "jax.numpy.polyint")(p[, m, k])
-: derivative/integral of polynomial.
-
-[`polyfit`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.polyfit.html#jax.numpy.polyfit "jax.numpy.polyfit")(x, y, deg[, rcond, full, w, cov])
-: create a polynomial to fit data `(x, y)`, minimized by least square loss.
-
 ## Selection, Sorting
 
 [`argwhere`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.argwhere.html#jax.numpy.argwhere "jax.numpy.argwhere")(a, *[, size, fill_value])
