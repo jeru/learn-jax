@@ -20,7 +20,7 @@ This is the main math / data-processing interface.
 A more primitive layer below `jax.numpy` (and `jax.scipi`).
 
 It has something that should be, by application, in `jax.numpy` but cannot, presumably due to `numpy` interface consistency.
-[Examples](jax-lax/jnp-plus.md).
+[Examples](jax/jnp-plus.md).
 
 Of course, `jax.numpy` also has things that feel lower-level than it should, noticeably `ufunc` and `vectorize`. These feel more natural to stay with `jax.vmap` and all the `jax.lax`'s [parallel operators](https://docs.jax.dev/en/latest/jax.lax.html#parallel-operators).
 
