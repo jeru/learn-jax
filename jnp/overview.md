@@ -63,6 +63,10 @@ Listed [here](matrix-multiplication-plus.md).
 Key takes:
 * If you decide to only learn one thing here, learn `einsum`. Most other stuff here is just a special case of `einsum`.
 
+## Reduction functions and statistics
+
+Listed [here](reduction-statistics.md).
+
 ## Polynomial and set
 
 Listed [here](polynomial-set.md).

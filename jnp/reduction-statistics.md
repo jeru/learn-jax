@@ -1,12 +1,16 @@
-## Reducing functions
+# Reduction functions and statsitics
 
-### Logic, Compare-ish
+Note that the numpy [`ufunc`](https://numpy.org/doc/stable/reference/ufuncs.html) itself also provides some member methods in the reduction manner: `reduce`, `accumulate`, `outer`.
+
+## General reduction
 
 [`apply_along_axis`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.apply_along_axis.html#jax.numpy.apply_along_axis "jax.numpy.apply_along_axis")(func1d, axis, arr, *args, ...)
 : general reduction on 1 axis.
 
 [`apply_over_axes`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.apply_over_axes.html#jax.numpy.apply_over_axes "jax.numpy.apply_over_axes")(func, a, axes)
 : generlizes `apply_along_axis` even more by allowing multiple axes given.
+
+## Logic and comparison
 
 [`all`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.all.html#jax.numpy.all "jax.numpy.all")(a[, axis, out, keepdims, where])
 [`any`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.any.html#jax.numpy.any "jax.numpy.any")(a[, axis, out, keepdims, where])
@@ -18,7 +22,13 @@
 [`allclose`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.allclose.html#jax.numpy.allclose "jax.numpy.allclose")(a, b[, rtol, atol, equal_nan])
 : all are respectively pairwise close.
 
-### Arithmetic
+## Basic arithmetic
+
+[`size`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.size.html#jax.numpy.size "jax.numpy.size")(a[, axis])
+: along the axis, simply count the elements.
+
+[`count_nonzero`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.count_nonzero.html#jax.numpy.count_nonzero "jax.numpy.count_nonzero")(a[, axis, keepdims])
+: along the axis, count how many nonzeros.
 
 [`sum`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.sum.html#jax.numpy.sum "jax.numpy.sum")(a[, axis, dtype, out, keepdims, ...])
 : sum along the axis.
@@ -29,7 +39,7 @@
 [`trapezoid`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.trapezoid.html#jax.numpy.trapezoid "jax.numpy.trapezoid")(y[, x, dx, axis])
 : integrate by treating `x -> y` as piecewise linear function.
 
-### Statistics
+## Statistics
 
 [`cumulative_sum`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.cumulative_sum.html#jax.numpy.cumulative_sum "jax.numpy.cumulative_sum")(x, /, *[, axis, dtype, ...])
 [`cumsum`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.cumsum.html#jax.numpy.cumsum "jax.numpy.cumsum")(a[, axis, dtype, out])
@@ -41,12 +51,6 @@
 [`mean`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.mean.html#jax.numpy.mean "jax.numpy.mean")(a[, axis, dtype, out, keepdims, where])
 
 [`median`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.median.html#jax.numpy.median "jax.numpy.median")(a[, axis, out, overwrite_input, keepdims])
-
-[`size`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.size.html#jax.numpy.size "jax.numpy.size")(a[, axis])
-: along the axis, simply count the elements.
-
-[`count_nonzero`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.count_nonzero.html#jax.numpy.count_nonzero "jax.numpy.count_nonzero")(a[, axis, keepdims])
-: along the axis, count how many nonzeros.
 
 [`max`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.max.html#jax.numpy.max "jax.numpy.max")(a[, axis, out, keepdims, initial, where])
 [`amax`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.amax.html#jax.numpy.amax "jax.numpy.amax")(a[, axis, out, keepdims, initial, where])
@@ -107,6 +111,10 @@
 [`corrcoef`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.corrcoef.html#jax.numpy.corrcoef "jax.numpy.corrcoef")(x[, y, rowvar, dtype])
 : Pearson correlation coefficients.
 
+[`bincount`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.bincount.html#jax.numpy.bincount "jax.numpy.bincount")(x[, weights, minlength, length])
+
+[`digitize`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.digitize.html#jax.numpy.digitize "jax.numpy.digitize")(x, bins[, right, method])
+
 [`histogram`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.histogram.html#jax.numpy.histogram "jax.numpy.histogram")(a[, bins, range, weights, density])
 [`histogram2d`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.histogram2d.html#jax.numpy.histogram2d "jax.numpy.histogram2d")(x, y[, bins, range, weights, ...])
 [`histogramdd`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.histogramdd.html#jax.numpy.histogramdd "jax.numpy.histogramdd")(sample[, bins, range, weights, ...])
@@ -115,16 +123,7 @@
 [`histogram_bin_edges`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.histogram_bin_edges.html#jax.numpy.histogram_bin_edges "jax.numpy.histogram_bin_edges")(a[, bins, range, weights])
 : edges of bins of histogram.
 
-## Misc (TODO: revisit all and classify properly)
-
-[`bincount`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.bincount.html#jax.numpy.bincount "jax.numpy.bincount")(x[, weights, minlength, length])
-
-[`digitize`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.digitize.html#jax.numpy.digitize "jax.numpy.digitize")(x, bins[, right, method])
-
-[`isin`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isin.html#jax.numpy.isin "jax.numpy.isin")(element, test_elements[, ...])
-: each of `element` is mapped to a boolean: whether this element is in `test_elements` (another array as collection).
-
-### Window
+## Window
 
 [`bartlett`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.bartlett.html#jax.numpy.bartlett "jax.numpy.bartlett")(M)
 
