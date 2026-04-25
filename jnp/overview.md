@@ -78,3 +78,11 @@ A little bit exotic in model training.
 Listed [here](types.md).
 
 Good to know.
+
+## Miscellanous stuff
+
+Listed [here](misc.md).
+
+Noticeably:
+* Convolution.
+* High-order diffs of arrays.
