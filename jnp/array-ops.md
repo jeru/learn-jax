@@ -219,7 +219,7 @@ When in higher dimensions, eg., in 2D, a leading/trailing row/column will be rem
 [`unique_values`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.unique_values.html#jax.numpy.unique_values "jax.numpy.unique_values")(x, /, *[, size, fill_value])
 : remove duplicated values in an array. Feels like a lot of versions of functions squeezed into one function signature. Unless `size` is specified, very unfriendly to `jit`.
 
-### Debug-related
+## Debug-related
 
 There might be uses beyond debugging. But in model training, likely strings won't be handled in this level (expect some tokenizer).
 

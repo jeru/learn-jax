@@ -34,6 +34,9 @@ Polynomial is represented as a 1D array (of its coefficients). Note that it is r
 
 ## Set (the set-theory set)
 
+[`isin`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isin.html#jax.numpy.isin "jax.numpy.isin")(element, test_elements[, ...])
+: each of `element` is mapped to a boolean: whether this element is in `test_elements` (another array as collection).
+
 [`intersect1d`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.intersect1d.html#jax.numpy.intersect1d "jax.numpy.intersect1d")(ar1, ar2[, assume_unique, ...])
 
 [`union1d`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.union1d.html#jax.numpy.union1d "jax.numpy.union1d")(ar1, ar2, *[, size, fill_value])
