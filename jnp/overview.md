@@ -349,14 +349,6 @@ Two versions have some subtle differences.
 [`fromfunction`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.fromfunction.html#jax.numpy.fromfunction "jax.numpy.fromfunction")(function, shape, *[, dtype])
 : array by calling `function` on array indices.
 
-[`indices`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.indices.html#jax.numpy.indices "jax.numpy.indices")(dimensions[, dtype, sparse])
-: get indices of an array of the given shape `dimensions`.
-Returned indices are in "column"-style: `ret[i]` is an array of shape `dimensions` representing the i-th index. That is, `(ret[0][pos], ret[1][pos], ...)` as a whole specifies the index of cell `pos` in the array.
-When `sparse=True`, the replications are eliminated (recursively) to save memory; the original indices can be reconstructed via array broadcasting.
-
-[`mask_indices`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.mask_indices.html#jax.numpy.mask_indices "jax.numpy.mask_indices")(n, mask_func[, k, size])
-: indices of a mask. The mask is computed by `mask_func` on an `(n,n)`-array. (Why 2D?)
-
 [`arange`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.arange.html#jax.numpy.arange "jax.numpy.arange")(start[, stop, step, dtype, device, ...])
 : Like python `range()`.
 
@@ -374,6 +366,29 @@ When `sparse=True`, the replications are eliminated (recursively) to save memory
 [`atleast_3d`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.atleast_3d.html#jax.numpy.atleast_3d "jax.numpy.atleast_3d")(*arys)
 : trying to increase the dimension of tensor/array without increase the number of elements, to 1/2/3.
 Feels sloppy... Shouldn't the input dimension be known exactly and increase dimension with things like `broadcast_to`?
+
+### Indices and mesh
+
+[`indices`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.indices.html#jax.numpy.indices "jax.numpy.indices")(dimensions[, dtype, sparse])
+: get indices of an array of the given shape `dimensions`.
+Returned indices are in "column"-style: `ret[i]` is an array of shape `dimensions` representing the i-th index. That is, `(ret[0][pos], ret[1][pos], ...)` as a whole specifies the index of cell `pos` in the array.
+When `sparse=True`, the replications are eliminated (recursively) to save memory; the original indices can be reconstructed via array broadcasting.
+
+[`mask_indices`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.mask_indices.html#jax.numpy.mask_indices "jax.numpy.mask_indices")(n, mask_func[, k, size])
+: indices of a mask. The mask is computed by `mask_func` on an `(n,n)`-array. (Why 2D?)
+
+[`ix_`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.ix_.html#jax.numpy.ix_ "jax.numpy.ix_")(*args)
+: returns an "open mesh", not necessarily but often indices, of multiple 1D sequences.
+Eg., `ix_([a0, a1, a2, a3], [b0, b1, b2])` will try to generate `(x, y)` so when varying `i`, tuple `(x[i], y[i])` will loop through all combinations of `(aj, bk)` for all possible `j, k`.
+
+[`meshgrid`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.meshgrid.html#jax.numpy.meshgrid "jax.numpy.meshgrid")(*xi[, copy, sparse, indexing])
+[`mgrid`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.mgrid.html#jax.numpy.mgrid "jax.numpy.mgrid")
+[`ogrid`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.ogrid.html#jax.numpy.ogrid "jax.numpy.ogrid")
+: create meshes.
+
+[`ravel_multi_index`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.ravel_multi_index.html#jax.numpy.ravel_multi_index "jax.numpy.ravel_multi_index")(multi_index, dims[, mode, ...])
+[`unravel_index`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.unravel_index.html#jax.numpy.unravel_index "jax.numpy.unravel_index")(indices, shape)
+: conversion between multi-dimensional indices and flattened 1D indices. (Why are the names inconsistent?)
 
 ### Array manipulation
 
@@ -445,6 +460,9 @@ TODO: check again.
 
 [`transpose`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.transpose.html#jax.numpy.transpose "jax.numpy.transpose")(a[, axes])
 : generalized transpose from `matrix_transpose` by allowing all axes to be shuffled, instead of just the last two.
+
+[`rollaxis`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.rollaxis.html#jax.numpy.rollaxis "jax.numpy.rollaxis")(a, axis[, start])
+: more exotic than `transpose`.
 
 [`zeros`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.zeros.html#jax.numpy.zeros "jax.numpy.zeros")(shape[, dtype, device, out_sharding])
 [`empty`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.empty.html#jax.numpy.empty "jax.numpy.empty")(shape[, dtype, device, out_sharding])
@@ -540,6 +558,9 @@ Polynomial is represented as a 1D array (of its coefficients). Note that it is r
 [`reshape`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.reshape.html#jax.numpy.reshape "jax.numpy.reshape")(a, shape[, order, copy, out_sharding])
 : well, very drastic and dramatic approach...
 
+[`ravel`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.ravel.html#jax.numpy.ravel "jax.numpy.ravel")(a[, order, out_sharding])
+: flatten the array into 1D.
+
 [`broadcast_to`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.broadcast_to.html#jax.numpy.broadcast_to "jax.numpy.broadcast_to")(array, shape, *[, out_sharding])
 
 [`broadcast_shapes`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.broadcast_shapes.html#jax.numpy.broadcast_shapes "jax.numpy.broadcast_shapes")(*shapes)
@@ -584,6 +605,9 @@ Polynomial is represented as a 1D array (of its coefficients). Note that it is r
 
 [`tile`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.tile.html#jax.numpy.tile "jax.numpy.tile")(A, reps)
 : expand the array by repeating. Each dimension's repeating count can be specified individually in `reps`; or a single repeating count so it applies to all dimensions.
+
+[`roll`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.roll.html#jax.numpy.roll "jax.numpy.roll")(a, shift[, axis])
+: roll `a` by `shift` amount rightward, i.e., value with index `i` at that `axis` goes to `(i + shift) mod N`.
 
 [`squeeze`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.squeeze.html#jax.numpy.squeeze "jax.numpy.squeeze")(a[, axis])
 : remove dimensions of size 1 (according to `axis`, or if not given, all such dimensions). Eg., an array of shape [3, 1, 2, 1] will become of shape [3, 2] after `squeeze()` without axis. Feels very sloppy and error-prone, because the 3 in the [3, 1, 2, 1] might be a variable and can occasionally become 1 due to different inputs, but we definitely don't want to eliminate that dimension.
@@ -703,6 +727,7 @@ Polynomial is represented as a 1D array (of its coefficients). Note that it is r
 : NOT ASYNC. Whether the object is iterable.
 
 [`promote_types`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.promote_types.html#jax.numpy.promote_types "jax.numpy.promote_types")(a, b)
+[`result_type`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.result_type.html#jax.numpy.result_type "jax.numpy.result_type")(*args)
 : NOT ASYNC. A common type to hold a binary calculation between `a` and `b`. Eg., `promote_types('float32', 'int32') == dtype('float32')`.
 
 [`isrealobj`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isrealobj.html#jax.numpy.isrealobj "jax.numpy.isrealobj")(x)
@@ -866,10 +891,16 @@ Each element in `x` corresponds to an element in `condlist`, which determines wh
 : each of `element` is mapped to a boolean: whether this element is in `test_elements` (another array as collection).
 
 [`packbits`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.packbits.html#jax.numpy.packbits "jax.numpy.packbits")(a[, axis, bitorder])
+[`unpackbits`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.unpackbits.html#jax.numpy.unpackbits "jax.numpy.unpackbits")(a[, axis, count, bitorder])
 : pack 8 bits in an array into a uint8.
 If the array is longer than 8, it will be truncated into window-8 and each one becomes an element.
 Incomplete window-8 will also be treated as a result number.
 `axis` controls which dimension to pack values (the other dimensions are simply treated as a batch); if `axis` is not given, the whole array will be flattened into 1D.
+Also the inverse version.
+
+[`unwrap`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.unwrap.html#jax.numpy.unwrap "jax.numpy.unwrap")(p[, discont, axis, period])
+: unwrap a periodic signal.
+The example basically said if you only have a sequence `(a[i] mod period)` (so lost some informatoin from `(a[i])`) and you know it is quite continuous, this function will try to recover the original `a[i]` by providing `discount` and `period`.
 
 ### Window
 
