@@ -2,7 +2,14 @@
 
 Reference page: https://docs.jax.dev/en/latest/jax.numpy.html
 
-## Pointwise functions
+## Pointwise functions (a.k.a. `numpy.ufunc`)
+
+[`ufunc`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.ufunc.html#jax.numpy.ufunc "jax.numpy.ufunc")(func, /, nin, nout, *[, name, nargs, ...])
+[`frompyfunc`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.frompyfunc.html#jax.numpy.frompyfunc "jax.numpy.frompyfunc")(func, /, nin, nout, *[, identity])
+: one is class, one is factory method.
+
+[`vectorize`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.vectorize.html#jax.numpy.vectorize "jax.numpy.vectorize")(pyfunc, *[, excluded, signature])
+: a decorator. TODO: revisit.
 
 [`where`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.where.html#jax.numpy.where "jax.numpy.where")(condition[, x, y, size, fill_value])
 : the asynchronized and multidimensional `if-then-else`.
@@ -154,7 +161,8 @@ Reference page: https://docs.jax.dev/en/latest/jax.numpy.html
 
 [`hypot`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.hypot.html#jax.numpy.hypot "jax.numpy.hypot")(x1, x2, /): hypotenuse (assuming `x1` and `x2` are sides of the right angle).
 
-[`ldexp`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.ldexp.html#jax.numpy.ldexp "jax.numpy.ldexp")(x1, x2, /): x1 * (2**x2).
+[`frexp`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.frexp.html#jax.numpy.frexp "jax.numpy.frexp")(x, /)
+[`ldexp`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.ldexp.html#jax.numpy.ldexp "jax.numpy.ldexp")(x1, x2, /): `frexp` splits a float into two parts: the part with absolute value between 0.5 (inclusive) and 1 (exclusive); the part of exponent of power 2. `ldexp` restores the two into one. Eg., `frexp(-0.3) == (-0.6, -1)` because `-0.3 == -0.6 * 2**-1`, and `ldexp(-0.6, -1) == -0.3`. (Original documentation, as of Apr 2026, said the first part will also be within -1 and 1, so underspecified.)
 
 #### Rounding
 
@@ -308,6 +316,18 @@ Reference page: https://docs.jax.dev/en/latest/jax.numpy.html
 [`prod`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.prod.html#jax.numpy.prod "jax.numpy.prod")(a[, axis, dtype, out, keepdims, ...])
 : product along the axis.
 
+[`trapezoid`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.trapezoid.html#jax.numpy.trapezoid "jax.numpy.trapezoid")(y[, x, dx, axis])
+: integrate by treating `x -> y` as piecewise linear function.
+
+[`tensordot`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.tensordot.html#jax.numpy.tensordot "jax.numpy.tensordot")(a, b[, axes, precision, ...])
+: generalized matrix multiplication with tensor tastes.
+Can all be implemented with `einsum` anyway, so this one is probably to please the physics folks (especially, general relativity).
+
+[`vdot`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.vdot.html#jax.numpy.vdot "jax.numpy.vdot")(a, b, *[, precision, ...])
+[`vecdot`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.vecdot.html#jax.numpy.vecdot "jax.numpy.vecdot")(x1, x2, /, *[, axis, precision, ...])
+[`vecmat`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.vecmat.html#jax.numpy.vecmat "jax.numpy.vecmat")(x1, x2, /)
+: basically `dot(conj(a), b)`, either 1D x 1D or higher dimensionally batched (allow broadcasting). Quantum mechanics folks love these.
+
 ## Array
 
 [`shape`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.shape.html#jax.numpy.shape "jax.numpy.shape")(a)
@@ -329,6 +349,14 @@ Two versions have some subtle differences.
 [`fromfunction`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.fromfunction.html#jax.numpy.fromfunction "jax.numpy.fromfunction")(function, shape, *[, dtype])
 : array by calling `function` on array indices.
 
+[`indices`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.indices.html#jax.numpy.indices "jax.numpy.indices")(dimensions[, dtype, sparse])
+: get indices of an array of the given shape `dimensions`.
+Returned indices are in "column"-style: `ret[i]` is an array of shape `dimensions` representing the i-th index. That is, `(ret[0][pos], ret[1][pos], ...)` as a whole specifies the index of cell `pos` in the array.
+When `sparse=True`, the replications are eliminated (recursively) to save memory; the original indices can be reconstructed via array broadcasting.
+
+[`mask_indices`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.mask_indices.html#jax.numpy.mask_indices "jax.numpy.mask_indices")(n, mask_func[, k, size])
+: indices of a mask. The mask is computed by `mask_func` on an `(n,n)`-array. (Why 2D?)
+
 [`arange`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.arange.html#jax.numpy.arange "jax.numpy.arange")(start[, stop, step, dtype, device, ...])
 : Like python `range()`.
 
@@ -348,6 +376,9 @@ Two versions have some subtle differences.
 Feels sloppy... Shouldn't the input dimension be known exactly and increase dimension with things like `broadcast_to`?
 
 ### Array manipulation
+
+[`ndarray.at`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.ndarray.at.html#jax.numpy.ndarray.at "jax.numpy.ndarray.at")
+: returns a "slice" of the array that can be manipulated (and the manipulation returns a copy of the whole array). A lot of these "manipulations" are implicitly used when `x[idx]` syntax is used.
 
 [`append`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.append.html#jax.numpy.append "jax.numpy.append")(arr, values[, axis])
 
@@ -378,11 +409,15 @@ Feels sloppy... Shouldn't the input dimension be known exactly and increase dime
 [`concatenate`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.concatenate.html#jax.numpy.concatenate "jax.numpy.concatenate")(arrays[, axis, dtype])
 : concatenate the given sequence of arrays along the given axis.
 
+[`trim_zeros`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.trim_zeros.html#jax.numpy.trim_zeros "jax.numpy.trim_zeros")(filt[, trim, axis])
+: remove leading and/or trailing zeros from array `filt`.
+When in higher dimensions, eg., in 2D, a leading/trailing row/column will be removed if it is all-zero.
+
 [`c_`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.c_.html#jax.numpy.c_ "jax.numpy.c_")
 [`r_`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.r_.html#jax.numpy.r_ "jax.numpy.r_")
 [`s_`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.s_.html#jax.numpy.s_ "jax.numpy.s_")
+[`index_exp`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.index_exp.html#jax.numpy.index_exp "jax.numpy.index_exp")
 :
-Seems the interface can supply an "instruction" as the first argument.
 TODO: check again.
 
 #### Filter-style.
@@ -394,11 +429,22 @@ TODO: check again.
 [`extract`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.extract.html#jax.numpy.extract "jax.numpy.extract")(condition, arr, *[, size, fill_value])
 : delete/filter array by a matching or broadcastable `condition`. Returns a 1D array of kept element.
 
+[`take`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.take.html#jax.numpy.take "jax.numpy.take")(a, indices[, axis, out, mode, ...])
+: only keep `a`'s elements designated by `indices`, which is an array of integers pointing to `a` as if it is flattened 1D.
+
+[`take_along_axis`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.take_along_axis.html#jax.numpy.take_along_axis "jax.numpy.take_along_axis")(arr, indices[, axis, mode, ...])
+: the `axis` specifies which dimension the choice happens and the `indices` are within that dimension.
 
 ### Matrix-like
 
 [`matrix_transpose`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.matrix_transpose.html#jax.numpy.matrix_transpose "jax.numpy.matrix_transpose")(x, /)
 : when the array is higher dimension, transpose the last two dimensions.
+
+[`swapaxes`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.swapaxes.html#jax.numpy.swapaxes "jax.numpy.swapaxes")(a, axis1, axis2)
+: in between `matrix_transpose` and `transpose` in terms of generality.
+
+[`transpose`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.transpose.html#jax.numpy.transpose "jax.numpy.transpose")(a[, axes])
+: generalized transpose from `matrix_transpose` by allowing all axes to be shuffled, instead of just the last two.
 
 [`zeros`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.zeros.html#jax.numpy.zeros "jax.numpy.zeros")(shape[, dtype, device, out_sharding])
 [`empty`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.empty.html#jax.numpy.empty "jax.numpy.empty")(shape[, dtype, device, out_sharding])
@@ -434,6 +480,9 @@ TODO: check again.
 [`diag_indices_from`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.diag_indices_from.html#jax.numpy.diag_indices_from "jax.numpy.diag_indices_from")(arr)
 : indices of an array that point to diagnal elements.
 
+[`tri`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.tri.html#jax.numpy.tri "jax.numpy.tri")(N[, M, k, dtype])
+: a matrix, elements on and below the diagonal are ones; above, zeros.
+
 [`trace`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.trace.html#jax.numpy.trace "jax.numpy.trace")(a[, offset, axis1, axis2, dtype, out])
 : sum along the diagnal, plane defined by `axis1` and `axis2`.
 
@@ -445,6 +494,16 @@ TODO: check again.
 
 [`vander`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.vander.html#jax.numpy.vander "jax.numpy.vander")(x[, N, increasing])
 : Vandermonde matrix (a[i,j] = x[i]**j).
+
+[`tril`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.tril.html#jax.numpy.tril "jax.numpy.tril")(m[, k])
+[`triu`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.triu.html#jax.numpy.triu "jax.numpy.triu")(m[, k])
+: returns the lower/upper triangle of matrix `m` (i.e., elements above/below the diagonal are replaced by zeros).
+
+[`tril_indices`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.tril_indices.html#jax.numpy.tril_indices "jax.numpy.tril_indices")(n[, k, m])
+[`tril_indices_from`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.tril_indices_from.html#jax.numpy.tril_indices_from "jax.numpy.tril_indices_from")(arr[, k])
+[`triu_indices`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.triu_indices.html#jax.numpy.triu_indices "jax.numpy.triu_indices")(n[, k, m])
+[`triu_indices_from`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.triu_indices_from.html#jax.numpy.triu_indices_from "jax.numpy.triu_indices_from")(arr[, k])
+: indices of a lower triangle matrix.
 
 ### Polynomial
 
@@ -526,6 +585,9 @@ Polynomial is represented as a 1D array (of its coefficients). Note that it is r
 [`tile`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.tile.html#jax.numpy.tile "jax.numpy.tile")(A, reps)
 : expand the array by repeating. Each dimension's repeating count can be specified individually in `reps`; or a single repeating count so it applies to all dimensions.
 
+[`squeeze`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.squeeze.html#jax.numpy.squeeze "jax.numpy.squeeze")(a[, axis])
+: remove dimensions of size 1 (according to `axis`, or if not given, all such dimensions). Eg., an array of shape [3, 1, 2, 1] will become of shape [3, 2] after `squeeze()` without axis. Feels very sloppy and error-prone, because the 3 in the [3, 1, 2, 1] might be a variable and can occasionally become 1 due to different inputs, but we definitely don't want to eliminate that dimension.
+
 ### Debug-related
 
 [`array_repr`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.array_repr.html#jax.numpy.array_repr "jax.numpy.array_repr")(arr[, max_line_width, precision, ...])
@@ -541,6 +603,9 @@ Polynomial is represented as a 1D array (of its coefficients). Note that it is r
 
 [`nonzero`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.nonzero.html#jax.numpy.nonzero "jax.numpy.nonzero")(a, *[, size, fill_value])
 : also returns indices like `argwhere`, but indices are parallel n arrays, each array corresponds to one dimension of `a`'s shape.
+
+[`flatnonzero`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.flatnonzero.html#jax.numpy.flatnonzero "jax.numpy.flatnonzero")(a, *[, size, fill_value])
+: returns indices of `a`, N-dim array treated as a flattened 1D array, that are non-zeros.
 
 [`sort`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.sort.html#jax.numpy.sort "jax.numpy.sort")(a[, axis, kind, order, stable, descending])
 [`argsort`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.argsort.html#jax.numpy.argsort "jax.numpy.argsort")(a[, axis, kind, order, stable, ...])
@@ -558,6 +623,13 @@ Polynomial is represented as a 1D array (of its coefficients). Note that it is r
 
 [`sort_complex`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.sort_complex.html#jax.numpy.sort_complex "jax.numpy.sort_complex")(a)
 : sort complex numbers, lexicographically.
+
+[`unique`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.unique.html#jax.numpy.unique "jax.numpy.unique")(ar[, return_index, return_inverse, ...])
+[`unique_all`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.unique_all.html#jax.numpy.unique_all "jax.numpy.unique_all")(x, /, *[, size, fill_value])
+[`unique_counts`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.unique_counts.html#jax.numpy.unique_counts "jax.numpy.unique_counts")(x, /, *[, size, fill_value])
+[`unique_inverse`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.unique_inverse.html#jax.numpy.unique_inverse "jax.numpy.unique_inverse")(x, /, *[, size, fill_value])
+[`unique_values`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.unique_values.html#jax.numpy.unique_values "jax.numpy.unique_values")(x, /, *[, size, fill_value])
+: remove duplicated values in an array. Feels like a lot of versions of functions squeezed into one function signature. Unless `size` is specified, very unfriendly to `jit`.
 
 ## Types
 
@@ -629,6 +701,9 @@ Polynomial is represented as a 1D array (of its coefficients). Note that it is r
 
 [`iterable`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.iterable.html#jax.numpy.iterable "jax.numpy.iterable")(y)
 : NOT ASYNC. Whether the object is iterable.
+
+[`promote_types`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.promote_types.html#jax.numpy.promote_types "jax.numpy.promote_types")(a, b)
+: NOT ASYNC. A common type to hold a binary calculation between `a` and `b`. Eg., `promote_types('float32', 'int32') == dtype('float32')`.
 
 [`isrealobj`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isrealobj.html#jax.numpy.isrealobj "jax.numpy.isrealobj")(x)
 : whether it is a non-complex, or an array of non-complex numbers.
@@ -773,6 +848,16 @@ Polynomial is represented as a 1D array (of its coefficients). Note that it is r
 
 ## Misc (TODO: revisit all and classify properly)
 
+[`select`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.select.html#jax.numpy.select "jax.numpy.select")(condlist, choicelist[, default])
+: `condlist` and `choicelist` are both sequences of broadcast-compatible arrays. For each position `pos` in the final array, the returned value `ret[pos]` will be `choicelist[i][pos]` where `i` is the first `condlist[i][pos]` with value True.
+
+[`piecewise`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.piecewise.html#jax.numpy.piecewise "jax.numpy.piecewise")(x, condlist, funclist, *args, **kw)
+: the `function`-instead-of-value-list version of `select`.
+Each element in `x` corresponds to an element in `condlist`, which determines which function in `funclist` to apply.
+
+[`choose`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.choose.html#jax.numpy.choose "jax.numpy.choose")(a, choices[, out, mode])
+: the `axiom of choice`-style representation? Feels like a failed attempt to get something engineering-wise useful in a math library: too confusing, the library documentation only explained the 1D case and pointed to `jax.lax.switch` instead (select functoin first, then apply to array).
+
 [`bincount`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.bincount.html#jax.numpy.bincount "jax.numpy.bincount")(x[, weights, minlength, length])
 
 [`digitize`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.digitize.html#jax.numpy.digitize "jax.numpy.digitize")(x, bins[, right, method])
@@ -780,8 +865,11 @@ Polynomial is represented as a 1D array (of its coefficients). Note that it is r
 [`isin`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isin.html#jax.numpy.isin "jax.numpy.isin")(element, test_elements[, ...])
 : each of `element` is mapped to a boolean: whether this element is in `test_elements` (another array as collection).
 
-[`choose`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.choose.html#jax.numpy.choose "jax.numpy.choose")(a, choices[, out, mode])
-: the `axiom of choice`-style representation? Feels like a failed attempt to get something engineering-wise useful in a math library: too confusing, the library documentation only explained the 1D case and pointed to `jax.lax.switch` instead (select functoin first, then apply to array).
+[`packbits`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.packbits.html#jax.numpy.packbits "jax.numpy.packbits")(a[, axis, bitorder])
+: pack 8 bits in an array into a uint8.
+If the array is longer than 8, it will be truncated into window-8 and each one becomes an element.
+Incomplete window-8 will also be treated as a result number.
+`axis` controls which dimension to pack values (the other dimensions are simply treated as a batch); if `axis` is not given, the whole array will be flattened into 1D.
 
 ### Window
 
