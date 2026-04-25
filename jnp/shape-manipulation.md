@@ -85,8 +85,11 @@ Note: this looks quite simiar to `broadcast_to`, but each dimension is not given
 numpy-taste objects with bracket syntax instead of functions. Column-stacking and row-stacking.
 Note: `r_` can take a secret first arg to do some very tricky maneuvers.
 
-[`unstack`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.unstack.html#jax.numpy.unstack "jax.numpy.unstack")(x, /, *[, axis])
 [`split`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.split.html#jax.numpy.split "jax.numpy.split")(ary, indices_or_sections[, axis])
+[`array_split`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.array_split.html#jax.numpy.array_split "jax.numpy.array_split")(ary, indices_or_sections[, axis])
+: `split` allows splitting an array either evenly by number or by explicit boundaries. `array_split` allow uneven split by number.
+
+[`unstack`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.unstack.html#jax.numpy.unstack "jax.numpy.unstack")(x, /, *[, axis])
 [`stack`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.stack.html#jax.numpy.stack "jax.numpy.stack")(arrays[, axis, out, dtype])
 : split/stack/unstack along an axis.
 
