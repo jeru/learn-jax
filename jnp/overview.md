@@ -7,6 +7,9 @@ Reference page: https://docs.jax.dev/en/latest/jax.numpy.html
 [`where`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.where.html#jax.numpy.where "jax.numpy.where")(condition[, x, y, size, fill_value])
 : the asynchronized and multidimensional `if-then-else`.
 
+[`place`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.place.html#jax.numpy.place "jax.numpy.place")(arr, mask, vals, *[, inplace])
+: if `mask`, replace `arr` by `vals`. Simplified alternative to `where`.
+
 ### Math
 
 [`abs`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.abs.html#jax.numpy.abs "jax.numpy.abs")(x, /)
@@ -22,7 +25,6 @@ Reference page: https://docs.jax.dev/en/latest/jax.numpy.html
 
 [`copysign`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.copysign.html#jax.numpy.copysign "jax.numpy.copysign")(x1, x2, /)
 : copy the sign of `x2` to the element of `x1`.
-
 
 #### Trigonometry, Complex, Hyperbolic
 
@@ -99,6 +101,10 @@ Reference page: https://docs.jax.dev/en/latest/jax.numpy.html
 
 #### Arithmetic
 
+[`positive`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.positive.html#jax.numpy.positive "jax.numpy.positive")(x, /)
+[`negative`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.negative.html#jax.numpy.negative "jax.numpy.negative")
+: make `x` as `+x` or `-x`. For plus, it's basically a NOOP for most number types.
+
 [`add`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.add.html#jax.numpy.add "jax.numpy.add")
 [`subtract`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.subtract.html#jax.numpy.subtract "jax.numpy.subtract")
 [`multiply`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.multiply.html#jax.numpy.multiply "jax.numpy.multiply")
@@ -117,10 +123,8 @@ Reference page: https://docs.jax.dev/en/latest/jax.numpy.html
 [`fmod`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.fmod.html#jax.numpy.fmod "jax.numpy.fmod")(x1, x2, /)
 : floating-point modulo.
 
-
 [`modf`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.modf.html#jax.numpy.modf "jax.numpy.modf")(x, /[, out])
 : returns two arrays: fractional results, then integral results.
-
 
 [`divmod`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.divmod.html#jax.numpy.divmod "jax.numpy.divmod")(x1, x2, /)
 : warning: always round down.
@@ -138,7 +142,6 @@ Reference page: https://docs.jax.dev/en/latest/jax.numpy.html
 [`square`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.square.html#jax.numpy.square "jax.numpy.square")(x, /)
 
 [`sqrt`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.sqrt.html#jax.numpy.sqrt "jax.numpy.sqrt")(x, /)
-
 
 [`cbrt`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.cbrt.html#jax.numpy.cbrt "jax.numpy.cbrt")(x, /)
 : cubic root
@@ -213,21 +216,35 @@ Reference page: https://docs.jax.dev/en/latest/jax.numpy.html
 [`bitwise_count`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.bitwise_count.html#jax.numpy.bitwise_count "jax.numpy.bitwise_count")(x, /)
 : count bit 1s. Eg., 255 has 8 bits of 1s.
 
+[`isreal`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isreal.html#jax.numpy.isreal "jax.numpy.isreal")(x)
+
+#### Irregular Floating-Point Values
+
 [`isnan`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isnan.html#jax.numpy.isnan "jax.numpy.isnan")(x, /)
 [`isfinite`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isfinite.html#jax.numpy.isfinite "jax.numpy.isfinite")(x, /)
 [`isinf`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isinf.html#jax.numpy.isinf "jax.numpy.isinf")(x, /)
 [`isneginf`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isneginf.html#jax.numpy.isneginf "jax.numpy.isneginf")(x, /[, out])
 [`isposinf`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isposinf.html#jax.numpy.isposinf "jax.numpy.isposinf")(x, /[, out])
 
-[`isreal`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isreal.html#jax.numpy.isreal "jax.numpy.isreal")(x)
+[`nan_to_num`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.nan_to_num.html#jax.numpy.nan_to_num "jax.numpy.nan_to_num")(x[, copy, nan, posinf, neginf])
+: patch nan, posinf, neginf values in `x`.
 
 #### Others
+
+[`interp`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.interp.html#jax.numpy.interp "jax.numpy.interp")(x, xp, fp[, left, right, period])
+: linear interpolation. Each individual element of `x` is interpolated against the piece-wise linear function defined by 1D arrays `(xp -> fp)`.
 
 [`heaviside`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.heaviside.html#jax.numpy.heaviside "jax.numpy.heaviside")(x1, x2, /)
 : the "heaviside" function: 0 if x1 < 0; 1 if x1 > 0; x2 if x1 is just 0.
 
 [`i0`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.i0.html#jax.numpy.i0 "jax.numpy.i0")(x)
 : some version of modified Bessel function (related to multiplication of gaussians).
+
+[`nextafter`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.nextafter.html#jax.numpy.nextafter "jax.numpy.nextafter")(x, y, /)
+: the next floating point value of `x`, towards `y`. Minimally incremented.
+
+[`spacing`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.spacing.html#jax.numpy.spacing "jax.numpy.spacing")(x, /)
+: the gap to the nearest but different value.
 
 ## Set (the set-theory set)
 
@@ -294,9 +311,11 @@ Reference page: https://docs.jax.dev/en/latest/jax.numpy.html
 ## Array
 
 [`shape`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.shape.html#jax.numpy.shape "jax.numpy.shape")(a)
-: shape of an array.
+[`ndim`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.ndim.html#jax.numpy.ndim "jax.numpy.ndim")(a)
+: shape (or just dimension) of an array.
 
 [`array`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.array.html#jax.numpy.array "jax.numpy.array")(object[, dtype, copy, order, ndmin, ...])
+[`ndarray`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.ndarray.html#jax.numpy.ndarray "jax.numpy.ndarray")
 [`asarray`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.asarray.html#jax.numpy.asarray "jax.numpy.asarray")(a[, dtype, order, copy, device, ...])
 : Array construction from `object`, where the object can be things like python native numbers, lists, etc.
 Two versions have some subtle differences.
@@ -334,28 +353,47 @@ Feels sloppy... Shouldn't the input dimension be known exactly and increase dime
 
 [`array_split`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.array_split.html#jax.numpy.array_split "jax.numpy.array_split")(ary, indices_or_sections[, axis])
 
+[`put`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.put.html#jax.numpy.put "jax.numpy.put")(a, ind, v[, mode, inplace])
+: perform `a[index] = value` by `(ind, v)`. Returns a copy of course given jnp objects are immutable (rely on XLA to optimize away unnecessary copies).
+*Subtlety*: array `a` is treated as if it is flattened, `ind` is 1D numbers. It is suggested more to use [`ndarray.at`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.ndarray.at.html#jax.numpy.ndarray.at "jax.numpy.ndarray.at") instead.
+
+[`put_along_axis`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.put_along_axis.html#jax.numpy.put_along_axis "jax.numpy.put_along_axis")(arr, indices, values, axis[, ...])
+: `indices` must define, for each dimension outside `axis`, a value to tell along `axis`, which cell to put a value.
+
 [`insert`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.insert.html#jax.numpy.insert "jax.numpy.insert")(arr, obj, values[, axis])
 : insert entries into the array.
 
 [`delete`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.delete.html#jax.numpy.delete "jax.numpy.delete")(arr, obj[, axis, assume_unique_indices])
 : delete entries from the array.
 
-[`compress`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.compress.html#jax.numpy.compress "jax.numpy.compress")(condition, a[, axis, size, ...])
-: delete/filter array `a` along with axis, according to boolean array `condition`. True for keeping, False for removing.
-
 [`flip`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.flip.html#jax.numpy.flip "jax.numpy.flip")(m[, axis])
 [`fliplr`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.fliplr.html#jax.numpy.fliplr "jax.numpy.fliplr")(m)
 [`flipud`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.flipud.html#jax.numpy.flipud "jax.numpy.flipud")(m)
 : flip along an axis. `fliplr` and `flipud` are fixed on axis=1/0 respectively.
+
+[`rot90`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.rot90.html#jax.numpy.rot90 "jax.numpy.rot90")(m[, k, axes])
+: `axes` is a 2-tuple defining the rotation plane; the whole array's each plane will be rotated 90 degrees CCW.
 
 [`concat`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.concat.html#jax.numpy.concat "jax.numpy.concat")(arrays, /, *[, axis])
 [`concatenate`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.concatenate.html#jax.numpy.concatenate "jax.numpy.concatenate")(arrays[, axis, dtype])
 : concatenate the given sequence of arrays along the given axis.
 
 [`c_`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.c_.html#jax.numpy.c_ "jax.numpy.c_")
-: concatenate a sequence of arrays along the last axis.
+[`r_`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.r_.html#jax.numpy.r_ "jax.numpy.r_")
+[`s_`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.s_.html#jax.numpy.s_ "jax.numpy.s_")
+:
 Seems the interface can supply an "instruction" as the first argument.
 TODO: check again.
+
+#### Filter-style.
+
+[`compress`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.compress.html#jax.numpy.compress "jax.numpy.compress")(condition, a[, axis, size, ...])
+: delete/filter array `a` along with axis, according to boolean array `condition`. True for keeping, False for removing.
+`condition` is 1D (along axis). Returned `a` has the same dimension but smaller along axis.
+
+[`extract`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.extract.html#jax.numpy.extract "jax.numpy.extract")(condition, arr, *[, size, fill_value])
+: delete/filter array by a matching or broadcastable `condition`. Returns a 1D array of kept element.
+
 
 ### Matrix-like
 
@@ -396,6 +434,9 @@ TODO: check again.
 [`diag_indices_from`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.diag_indices_from.html#jax.numpy.diag_indices_from "jax.numpy.diag_indices_from")(arr)
 : indices of an array that point to diagnal elements.
 
+[`trace`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.trace.html#jax.numpy.trace "jax.numpy.trace")(a[, offset, axis1, axis2, dtype, out])
+: sum along the diagnal, plane defined by `axis1` and `axis2`.
+
 [`block`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.block.html#jax.numpy.block "jax.numpy.block")(arrays)
 : array from "sub"-arrays like gluing sub-matrices into a matrix.
 
@@ -404,6 +445,36 @@ TODO: check again.
 
 [`vander`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.vander.html#jax.numpy.vander "jax.numpy.vander")(x[, N, increasing])
 : Vandermonde matrix (a[i,j] = x[i]**j).
+
+### Polynomial
+
+Polynomial is represented as a 1D array (of its coefficients). Note that it is reverse-indexed, eg., [1, 2, 3] is `1 * x**2 + 2 * x + 3`.
+
+[`polyval`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.polyval.html#jax.numpy.polyval "jax.numpy.polyval")(p, x, *[, unroll])
+: evaluate the polynomial at `x`.
+
+[`poly`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.poly.html#jax.numpy.poly "jax.numpy.poly")(seq_of_zeros)
+: given the roots, construct a polynomial.
+
+[`roots`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.roots.html#jax.numpy.roots "jax.numpy.roots")(p, *[, strip_zeros])
+: given a polynomial, compute roots.
+
+[`polyadd`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.polyadd.html#jax.numpy.polyadd "jax.numpy.polyadd")(a1, a2)
+[`polysub`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.polysub.html#jax.numpy.polysub "jax.numpy.polysub")(a1, a2)
+: add/subtract two polynomials. Difference from elementwise add/subtract: the two polynomials can have different lengths.
+
+[`polymul`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.polymul.html#jax.numpy.polymul "jax.numpy.polymul")(a1, a2, *[, trim_leading_zeros])
+: multiple of two polynomials.
+
+[`polydiv`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.polydiv.html#jax.numpy.polydiv "jax.numpy.polydiv")(u, v, *[, trim_leading_zeros])
+: divide and returns the quotient and remainder.
+
+[`polyder`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.polyder.html#jax.numpy.polyder "jax.numpy.polyder")(p[, m])
+[`polyint`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.polyint.html#jax.numpy.polyint "jax.numpy.polyint")(p[, m, k])
+: derivative/integral of polynomial.
+
+[`polyfit`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.polyfit.html#jax.numpy.polyfit "jax.numpy.polyfit")(x, y, deg[, rcond, full, w, cov])
+: create a polynomial to fit data `(x, y)`, minimized by least square loss.
 
 ## Shape manipulation
 
@@ -445,6 +516,16 @@ TODO: check again.
 [`dstack`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.dstack.html#jax.numpy.dstack "jax.numpy.dstack")(tup[, dtype])
 : depth-wise (axis 2) split and stack.
 
+[`moveaxis`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.moveaxis.html#jax.numpy.moveaxis "jax.numpy.moveaxis")(a, source, destination)
+[`permute_dims`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.permute_dims.html#jax.numpy.permute_dims "jax.numpy.permute_dims")(a, /, axes)
+: TODO another look.
+
+[`pad`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.pad.html#jax.numpy.pad "jax.numpy.pad")(array, pad_width[, mode])
+: pad the array.
+
+[`tile`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.tile.html#jax.numpy.tile "jax.numpy.tile")(A, reps)
+: expand the array by repeating. Each dimension's repeating count can be specified individually in `reps`; or a single repeating count so it applies to all dimensions.
+
 ### Debug-related
 
 [`array_repr`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.array_repr.html#jax.numpy.array_repr "jax.numpy.array_repr")(arr[, max_line_width, precision, ...])
@@ -462,16 +543,29 @@ TODO: check again.
 : also returns indices like `argwhere`, but indices are parallel n arrays, each array corresponds to one dimension of `a`'s shape.
 
 [`sort`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.sort.html#jax.numpy.sort "jax.numpy.sort")(a[, axis, kind, order, stable, descending])
+[`argsort`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.argsort.html#jax.numpy.argsort "jax.numpy.argsort")(a[, axis, kind, order, stable, ...])
 : sort along axis.
 
+[`partition`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.partition.html#jax.numpy.partition "jax.numpy.partition")(a, kth[, axis])
 [`argpartition`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.argpartition.html#jax.numpy.argpartition "jax.numpy.argpartition")(a, kth[, axis])
+: partition for sort along an axis (the quicksort style partition, but `kth` is rigorous).
 
-[`argsort`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.argsort.html#jax.numpy.argsort "jax.numpy.argsort")(a[, axis, kind, order, stable, ...])
+[`searchsorted`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.searchsorted.html#jax.numpy.searchsorted "jax.numpy.searchsorted")(a, v[, side, sorter, method])
+: binary search, returns the index. `a` is 1D.
+
+[`lexsort`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.lexsort.html#jax.numpy.lexsort "jax.numpy.lexsort")(keys[, axis])
+: sort the array lexicographically.
+
+[`sort_complex`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.sort_complex.html#jax.numpy.sort_complex "jax.numpy.sort_complex")(a)
+: sort complex numbers, lexicographically.
 
 ## Types
 
 [`generic`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.generic.html#jax.numpy.generic "jax.numpy.generic")()
 : base class of "most" scalar types.
+
+[`object_`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.object_.html#jax.numpy.object_ "jax.numpy.object_")([value])
+: alias of python `object`.
 
 [`bool_`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.bool_.html#jax.numpy.bool_ "jax.numpy.bool_")
 : alias of python `bool`.
@@ -532,6 +626,9 @@ TODO: check again.
 
 [`isscalar`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isscalar.html#jax.numpy.isscalar "jax.numpy.isscalar")(element)
 : NOT ASYNC.
+
+[`iterable`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.iterable.html#jax.numpy.iterable "jax.numpy.iterable")(y)
+: NOT ASYNC. Whether the object is iterable.
 
 [`isrealobj`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isrealobj.html#jax.numpy.isrealobj "jax.numpy.isrealobj")(x)
 : whether it is a non-complex, or an array of non-complex numbers.
@@ -625,6 +722,9 @@ TODO: check again.
 
 [`var`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.var.html#jax.numpy.var "jax.numpy.var")(a[, axis, dtype, out, ddof, keepdims, ...])
 
+[`ptp`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.ptp.html#jax.numpy.ptp "jax.numpy.ptp")(a[, axis, out, keepdims])
+: "peak-to-peak" difference along a given `axis` (default: no axis, whole n-dim array viewed flattened).
+
 ### Versions ignoring NaN
 
 [`nanprod`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.nanprod.html#jax.numpy.nanprod "jax.numpy.nanprod")(a[, axis, dtype, out, keepdims, ...])
@@ -680,6 +780,9 @@ TODO: check again.
 [`isin`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.isin.html#jax.numpy.isin "jax.numpy.isin")(element, test_elements[, ...])
 : each of `element` is mapped to a boolean: whether this element is in `test_elements` (another array as collection).
 
+[`choose`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.choose.html#jax.numpy.choose "jax.numpy.choose")(a, choices[, out, mode])
+: the `axiom of choice`-style representation? Feels like a failed attempt to get something engineering-wise useful in a math library: too confusing, the library documentation only explained the 1D case and pointed to `jax.lax.switch` instead (select functoin first, then apply to array).
+
 ### Window
 
 [`bartlett`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.bartlett.html#jax.numpy.bartlett "jax.numpy.bartlett")(M)
@@ -700,9 +803,10 @@ Either too trivial or not quite relevant to model training/inference.
 
 [`frombuffer`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.frombuffer.html#jax.numpy.frombuffer "jax.numpy.frombuffer")(buffer[, dtype, count, offset])
 
+[`printoptions`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.printoptions.html#jax.numpy.printoptions "jax.numpy.printoptions")(*args, **kwargs)
 [`get_printoptions`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.get_printoptions.html#jax.numpy.get_printoptions "jax.numpy.get_printoptions")()
 [`set_printoptions`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.set_printoptions.html#jax.numpy.set_printoptions "jax.numpy.set_printoptions")(*args, **kwargs)
-: simply forwarded to numpy ([this](https://numpy.org/doc/stable/reference/generated/numpy.get_printoptions.html#numpy.get_printoptions) and [this](https://numpy.org/doc/stable/reference/generated/numpy.set_printoptions.html#numpy.set_printoptions)).
+: simply forwarded to numpy ([this]((https://numpy.org/doc/stable/reference/generated/numpy.printoptions.html#numpy.printoptions), [this](https://numpy.org/doc/stable/reference/generated/numpy.get_printoptions.html#numpy.get_printoptions) and [this](https://numpy.org/doc/stable/reference/generated/numpy.set_printoptions.html#numpy.set_printoptions)).
 
 
 [`from_dlpack`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.from_dlpack.html#jax.numpy.from_dlpack "jax.numpy.from_dlpack")(x, /, *[, device, copy])
