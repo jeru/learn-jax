@@ -36,6 +36,11 @@ There are also a few functions that allow a user do explicit broadcasting, like 
 
 Listed [here](elementwise.md).
 
+Key takes:
+* Every basic math function widely used and operates on numbers (integer, real, complex) is already here.
+* Be careful about integer modulo when it comes to negative operands. Always tricky in every single language, and cannot be made consistent across all. Noticeably jnp (and numpy) isn't consistent with C/C++.
+* The existence of functions like `expm1`, `log1p` and `logaddexp` exposes how tricky sometimes numerical stability can be. This is very relevant in model training as well.
+
 ## Set (the set-theory set)
 
 [`intersect1d`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.intersect1d.html#jax.numpy.intersect1d "jax.numpy.intersect1d")(ar1, ar2[, assume_unique, ...])

@@ -1,17 +1,16 @@
 # Elementwise functions
 
+### From an ordinary function to something parallel
+
+There is NO performance concern on python language overhead here on the underlying (ordinary) function here: all these functions will have to go through `jax.jit` before going to GPU; and `jax.jit` aren't able to deal arbitrary python bytecode. The wrapped functions must be "green".
+
 [`ufunc`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.ufunc.html#jax.numpy.ufunc "jax.numpy.ufunc")(func, /, nin, nout, *[, name, nargs, ...])
 [`frompyfunc`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.frompyfunc.html#jax.numpy.frompyfunc "jax.numpy.frompyfunc")(func, /, nin, nout, *[, identity])
 : one is class, one is factory method.
+They will add a bunch extra functions like `reduce`, `accumulate` to the class.
 
 [`vectorize`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.vectorize.html#jax.numpy.vectorize "jax.numpy.vectorize")(pyfunc, *[, excluded, signature])
-: a decorator. TODO: revisit.
-
-[`where`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.where.html#jax.numpy.where "jax.numpy.where")(condition[, x, y, size, fill_value])
-: the asynchronized and multidimensional `if-then-else`.
-
-[`place`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.place.html#jax.numpy.place "jax.numpy.place")(arr, mask, vals, *[, inplace])
-: if `mask`, replace `arr` by `vals`. Simplified alternative to `where`.
+: a decorator that wraps a function over with [`jax.vmap`](https://docs.jax.dev/en/latest/_autosummary/jax.vmap.html).
 
 ### Math
 
@@ -179,6 +178,12 @@
 : Round towards zero.
 
 #### Logic, Bit, Compare-ish
+
+[`where`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.where.html#jax.numpy.where "jax.numpy.where")(condition[, x, y, size, fill_value])
+: the asynchronized and multidimensional `if-then-else`.
+
+[`place`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.place.html#jax.numpy.place "jax.numpy.place")(arr, mask, vals, *[, inplace])
+: if `mask`, replace `arr` by `vals`. Simplified alternative to `where`.
 
 [`equal`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.equal.html#jax.numpy.equal "jax.numpy.equal")(x, y, /)
 [`not_equal`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.not_equal.html#jax.numpy.not_equal "jax.numpy.not_equal")(x, y, /)
