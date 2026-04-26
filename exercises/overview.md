@@ -43,7 +43,7 @@ Key takes:
 
 ## [CSES-1070](https://cses.fi/problemset/task/1094/) (interleave)
 
-[Solution](cses-1070/solve.py) and custom [answer checker](cses/1070/checker.py).
+[Solution](cses-1070/solve.py) and custom [answer checker](cses-1070/checker.py).
 
 Key takes:
 * Benchmarking: calling `block_until_ready()` will ensure the asynchronous computation is done.
