@@ -1,3 +1,6 @@
+# Copyright 2026 Cheng Sheng
+# SPDX-License-Identifier: Apache-2.0
+
 # https://cses.fi/problemset/task/1068/
 #
 # Basically Collatz conjecture simulation for up to n=1e6.
