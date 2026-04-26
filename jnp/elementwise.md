@@ -181,6 +181,7 @@ They will add a bunch extra functions like `reduce`, `accumulate` to the class.
 
 [`where`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.where.html#jax.numpy.where "jax.numpy.where")(condition[, x, y, size, fill_value])
 : the asynchronized and multidimensional `if-then-else`.
+_Note_: when `condition` is a single boolean (might be asynchronous), consider using `jax.lax.cond` instead, whose `x` and `y` branches are functions so can be run lazily.
 
 [`place`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.place.html#jax.numpy.place "jax.numpy.place")(arr, mask, vals, *[, inplace])
 : if `mask`, replace `arr` by `vals`. Simplified alternative to `where`.
