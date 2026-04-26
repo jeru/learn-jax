@@ -68,3 +68,10 @@ Key takes:
 [Solution](cses-1618/solve.py).
 Recursively compute powers with rounding.
 With a little elbow grease, can be converted to very flat operations.
+
+## [CSES-1754](https://cses.fi/problemset/task/1754) (parallel simple math)
+
+[Solution](cses-1754/solve.py).
+Used `jnp.stack` and `jnp.all(..., axis=0)`.
+
+First problem with a flavor of "batched" data processing.
