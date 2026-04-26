@@ -75,3 +75,9 @@ With a little elbow grease, can be converted to very flat operations.
 Used `jnp.stack` and `jnp.all(..., axis=0)`.
 
 First problem with a flavor of "batched" data processing.
+
+## [CSES-1755](https://cses.fi/problemset/task/1755) (palindrome)
+
+[Solution](cses-1755/solve.py) and custom [answer checker](cses-1755/checker.py).
+
+Used `jnp.bincount` and then `jnp.repeat` as means to inverse counting. A little index manipulation.

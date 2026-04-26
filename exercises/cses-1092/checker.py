@@ -1,7 +1,7 @@
 # Copyright 2026 Cheng Sheng
 # SPDX-License-Identifier: Apache-2.0
 #
-# Output verifier for https://cses.fi/problemset/task/1070 given the output is
+# Output verifier for https://cses.fi/problemset/task/1092 given the output is
 # not unique and no official verifier is provided.
 #
 # Need to check the ground-truth file whether it is a "NO". If not,
