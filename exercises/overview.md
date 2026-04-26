@@ -13,7 +13,7 @@ Key takes:
 
 ## [CSES-1083](https://cses.fi/problemset/task/1083) (summation)
 
-[Solution](cses-1083-solve.py).
+[Solution](cses-1083/solve.py).
 
 Key takes:
 * A function decorated with `jax.jit` can be compiled multiple times, each time the underlying computation flow must deal with a static shape of arrays under the hood.
