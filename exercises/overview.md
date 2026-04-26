@@ -49,3 +49,8 @@ Key takes:
 * Benchmarking: calling `block_until_ready()` will ensure the asynchronous computation is done.
 * Benchmarking: compilation still takes time. It is recommended to dry run the jax function once before the full test, to exclude the compilation time. (So called "warm up".)
 * Not relevant to jax: converting jax results to python via `[int(x) for x in ans]` is terribly slow. Use `map(int, numpy.asarray(ans))` with the raw `numpy` (NOT jax.numpy) makes things significantly faster (9 seconds vs 0.25 seconds for the biggest test of this problem).
+
+## [CSES-1072](https://cses.fi/problemset/task/1072) (calcuate)
+
+[Solution](cses-1072/solve.py). This is probably the best suit as the first problem, due to its implementation simplicity.
+Just a counting problem.
