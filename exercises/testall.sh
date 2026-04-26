@@ -13,7 +13,7 @@ run_test() {
   diff -q -w tmp.out "$fout" && echo "OK" || { echo "FAILED!!!!!"; exit 1; }
 }
 
-for fin in $(ls testdata/*.in); do
+for fin in $(ls -v testdata/*.in); do
   run_test $fin
 done
 

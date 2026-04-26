@@ -13,7 +13,7 @@ run_test() {
   uv run checker.py "$fin" tmp.out "$fout"
 }
 
-for fin in $(ls testdata/*.in); do
+for fin in $(ls -v testdata/*.in); do
   run_test $fin
 done
 
