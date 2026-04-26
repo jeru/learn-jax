@@ -36,3 +36,7 @@ Key takes:
 * A user doesn't need to distinguish an input raw int type and an asynchronized int (eg., `arr.shape[0]`) when the API reference says the parameter is an int. The jax function can actually handle both.
 * When using a "filter"-style function (like here [`jnp.compress`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.compress.html#jax.numpy.compress)) that shrinks an array with `jax.jit`, an explicit `size` should be given to make the output static-sized, with tails filled with some kind of invalid values.
 * No type promotion is needed if all the operands have the same type. Jax also complains that there's no type promotion defined for 1-bit, 2-bit and 4-bit integers, which feels like a good thing (most langaues, including python and C/C++, are in general too sloppy on type promotion; should learn from Rust).
+
+## [CSES-1094](https://cses.fi/problemset/task/1094/) (prefix max)
+
+[Solution](cses-1094/solve.py). Surprisingly simple for jax.numpy.
