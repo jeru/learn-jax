@@ -40,3 +40,12 @@ Key takes:
 ## [CSES-1094](https://cses.fi/problemset/task/1094/) (prefix max)
 
 [Solution](cses-1094/solve.py). Surprisingly simple for jax.numpy.
+
+## [CSES-1070](https://cses.fi/problemset/task/1094/) (interleave)
+
+[Solution](cses-1070/solve.py) and custom [answer checker](cses/1070/checker.py).
+
+Key takes:
+* Benchmarking: calling `block_until_ready()` will ensure the asynchronous computation is done.
+* Benchmarking: compilation still takes time. It is recommended to dry run the jax function once before the full test, to exclude the compilation time. (So called "warm up".)
+* Not relevant to jax: converting jax results to python via `[int(x) for x in ans]` is terribly slow. Use `map(int, numpy.asarray(ans))` with the raw `numpy` (NOT jax.numpy) makes things significantly faster (9 seconds vs 0.25 seconds for the biggest test of this problem).
