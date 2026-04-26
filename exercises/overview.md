@@ -54,3 +54,11 @@ Key takes:
 
 [Solution](cses-1072/solve.py). This is probably the best suit as the first problem, due to its implementation simplicity.
 Just a counting problem.
+
+## [CSES-1092](https://cses.fi/problemset/task/1092) (with binary sort)
+
+[Solution](cses-1092/solve.py) and custom [answer checker](cses-1092/checker.py).
+
+Key takes:
+* `jnp.searchsorted` for binary search, returning indices (key can be a matrix, returning indices of the same shape).
+* `array[indices]` is valid for `indices` themselves being an array. Though this operation might be expensive when both `array` and `indices` are large (a lot of random access).
