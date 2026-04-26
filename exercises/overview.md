@@ -93,3 +93,10 @@ Very rare occasions that doing recursion feels right in jax. Of course, static a
 [Solution](cses-1623/solve.py).
 
 A lot of broadcasting.
+
+## [CSES-3399](https://cses.fi/problemset/task/3399) (batch of combinatorial)
+
+[Solution](cses-3399/solve.py) and custom [answer checker](cses-3399/checker.py).
+
+Small combinatorial tasks each with a different size.
+Once the algorithm is sorted out, the solution is significantly easier than the answer checker.
