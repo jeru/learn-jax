@@ -62,3 +62,9 @@ Just a counting problem.
 Key takes:
 * `jnp.searchsorted` for binary search, returning indices (key can be a matrix, returning indices of the same shape).
 * `array[indices]` is valid for `indices` themselves being an array. Though this operation might be expensive when both `array` and `indices` are large (a lot of random access).
+
+## [CSES-1618](https://cses.fi/problemset/task/1618) (simple recursive calculation)
+
+[Solution](cses-1618/solve.py).
+Recursively compute powers with rounding.
+With a little elbow grease, can be converted to very flat operations.
