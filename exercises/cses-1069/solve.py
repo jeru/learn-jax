@@ -42,6 +42,9 @@ def run_in_jax(a: UInt4[Array, 'N']) -> Int64[Array, '1']:
     ending_mask = (a != right_shifted)
 
     indices = jnp.indices(a.shape, dtype=jnp.int64)
+    # Collect all the indices of starting positions and ending positions to
+    # the beginning of each array; remaining arrays are filled with the same
+    # value so will only contribute zeros after subtraction to the max.
     starting_positions = jnp.compress(starting_mask, indices, size=a.shape[0],
                                       fill_value=-1)
     ending_positions = jnp.compress(ending_mask, indices, size=a.shape[0],
