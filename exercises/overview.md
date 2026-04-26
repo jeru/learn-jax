@@ -82,8 +82,14 @@ First problem with a flavor of "batched" data processing.
 
 Used `jnp.bincount` and then `jnp.repeat` as means to inverse counting. A little index manipulation.
 
-## [CSES-2205](https://cses.fi/problemset/task/2205/)
+## [CSES-2205](https://cses.fi/problemset/task/2205/) (gray code)
 
 [Solution](cses-2205/solve.py) and custom [answer checker](cses-2205/checker.py).
 
 Very rare occasions that doing recursion feels right in jax. Of course, static and very few layers. `jax.jit` will unroll the function all the way for each recursion layer.
+
+## [CSES-1623](https://cses.fi/problemset/task/1623) (knapsack problem, small N)
+
+[Solution](cses-1623/solve.py).
+
+A lot of broadcasting.
