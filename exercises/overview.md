@@ -26,3 +26,13 @@ Key takes:
   ```
   This way, the value of this argument (not only its type, which might contain shape information) is treated as static.
   So a call to the function with a different value will also cause a compilation of a new XLA binary.
+
+## [CSES-1069](https://cses.fi/problemset/task/1069) (sequence processing)
+
+[Solution](cses-1069/solve.py).
+
+Key takes:
+* The jax.numpy API is quite suitable to process sequences, but only if a parallel algorithm can be found.
+* A user doesn't need to distinguish an input raw int type and an asynchronized int (eg., `arr.shape[0]`) when the API reference says the parameter is an int. The jax function can actually handle both.
+* When using a "filter"-style function (like here [`jnp.compress`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.compress.html#jax.numpy.compress)) that shrinks an array with `jax.jit`, an explicit `size` should be given to make the output static-sized, with tails filled with some kind of invalid values.
+* No type promotion is needed if all the operands have the same type. Jax also complains that there's no type promotion defined for 1-bit, 2-bit and 4-bit integers, which feels like a good thing (most langaues, including python and C/C++, are in general too sloppy on type promotion; should learn from Rust).
