@@ -36,4 +36,20 @@ Pick some simple algorithm tasks (competition programming / interview questions)
 They are designed for CPU solutions so mostly won't fit performance-wise (seriously sequential and dynamic).
 But can provide enough variety to cover some basic uses.
 
-All [here](exercises/overview.md).
+Listed [here](exercises/jax-only.md).
+
+## grain
+
+Now add [`grain`](https://google-grain.readthedocs.io/en/latest/index.html) to the recipe.
+
+This is the input data processing part, in charge of:
+* reading data from files,
+* shuffling them (gradient descend optimizers generally assume training data in random order for their math to work),
+* transforming data format (pre-GPU exclusively),
+* sharding,
+* batching.
+These are where the complexity is.
+But the output side: a `DatasetIterator` that spit out batches of data and fed into the `@jax.jit`-wrapped function.
+It is just a python iterator but resumable: its internal state can be dumped to disk and loaded back.
+
+Start with consumer side only and do some extra exercises by solving algorithmic problems, _input handling via a custom `DatasetIterator` through a bunch of text files_. Listed [here](exercises/jax-grain1.md).
