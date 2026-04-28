@@ -17,3 +17,9 @@ Can I convert the mechanism to use `DataLoader` instead?
 Make this input as a `DataSource` to use the higher-level, fancier grain tooling (DataLoader). Need to set a `num_epochs` so it doesn't loop forever.
 
 [Whole program](cses-1621/whole.py).
+
+## CSES-1619 (https://cses.fi/problemset/task/1619) (size(unique(...)))
+
+Make the DataSource a [separate library](../src/my_lib/tests_data_source.py) for reuse.
+
+[Whole program](cses-1619/whole.py).
