@@ -13,15 +13,13 @@ import os
 os.environ["JAX_PLATFORMS"] = "cpu"
 os.environ["JAX_ENABLE_X64"] = "1"
 
-from functools import partial
 
 import jax
 from jax import numpy as jnp
-from jax import lax
 from jaxtyping import Array, Int64
 
 @jax.jit
-def run_in_jax(a: Int64[Array, "N"]) -> Int64[Array, "1"]:
+def run_in_jax(a: Int64[Array, " N"]) -> Int64[Array, "1"]:
     n = a.shape[0]
     m = 1 << n
     # Operand 1: (m, 1). Operand 2: (1, n). End result: (m, n).
@@ -35,7 +33,6 @@ def run_in_jax(a: Int64[Array, "N"]) -> Int64[Array, "1"]:
 
 
 def main():
-    import numpy
     import sys
     sys.stdin.readline()
     a = jnp.array([int(x) for x in sys.stdin.readline().split()],

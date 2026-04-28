@@ -13,12 +13,11 @@ os.environ["JAX_ENABLE_X64"] = "1"
 
 import jax
 from jax import numpy as jnp
-from jax import lax
 from jaxtyping import Array, Int64
 
 
 @jax.jit
-def run_in_jax(a: Int64[Array, 'N']) -> Int64[Array, '1']:
+def run_in_jax(a: Int64[Array, ' N']) -> Int64[Array, '1']:
     pmax = jnp.maximum.accumulate(a)
     return jnp.sum(pmax - a)
 

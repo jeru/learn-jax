@@ -12,16 +12,14 @@ import os
 os.environ["JAX_PLATFORMS"] = "cpu"
 os.environ["JAX_ENABLE_X64"] = "1"
 
-from functools import partial
 
 import jax
 from jax import numpy as jnp
-from jax import lax
-from jaxtyping import Array, Bool, Int8
+from jaxtyping import Array, Int8
 
 
 @jax.jit
-def run_in_jax(a: Int8[Array, 'N']) -> Int8[Array, 'N']:
+def run_in_jax(a: Int8[Array, ' N']) -> Int8[Array, ' N']:
     no_solution = jnp.full_like(a, -1)
 
     freqs = jnp.bincount(a, length=ord('Z') + 1)

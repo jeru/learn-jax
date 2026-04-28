@@ -14,12 +14,11 @@ from functools import partial
 
 import jax
 from jax import numpy as jnp
-from jax import lax
-from jaxtyping import Array, Bool, Int64
+from jaxtyping import Array, Int64
 
 
 @partial(jax.jit, static_argnames=['n'])
-def run_in_jax(n: int) -> Int64[Array, 'N']:
+def run_in_jax(n: int) -> Int64[Array, ' N']:
     num = jnp.arange(1, n + 1, dtype=jnp.int64)
     sqr = num * num
     pairs = sqr * (sqr - 1) // 2

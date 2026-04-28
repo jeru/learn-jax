@@ -14,12 +14,11 @@ os.environ["JAX_ENABLE_X64"] = "1"
 
 import jax
 from jax import numpy as jnp
-from jax import lax
 from jaxtyping import Array, Int64
 
 
 @jax.jit
-def run_in_jax(alike: Int64[Array, 'N']) -> Int64[Array, 'N']:
+def run_in_jax(alike: Int64[Array, ' N']) -> Int64[Array, ' N']:
     n = alike.shape[0]
     left = jnp.arange(0, n // 2)
     right = jnp.arange(n // 2, n)

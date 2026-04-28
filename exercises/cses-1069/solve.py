@@ -19,7 +19,6 @@ os.environ["JAX_ENABLE_X64"] = "1"
 
 import jax
 from jax import numpy as jnp
-from jax import lax
 from jaxtyping import Array, UInt4, Int64
 
 
@@ -32,7 +31,7 @@ CHAR_MAP = {'A': CHAR_A, 'C': CHAR_C, 'G': CHAR_G, 'T': CHAR_T}
 
 
 @jax.jit
-def run_in_jax(a: UInt4[Array, 'N']) -> Int64[Array, '1']:
+def run_in_jax(a: UInt4[Array, ' N']) -> Int64[Array, '1']:
     pad = jnp.array([INVALID], dtype=jnp.uint4)
 
     left_shifted = jnp.concatenate([pad, jnp.delete(a, -1)])

@@ -20,7 +20,6 @@ from functools import partial
 
 import jax
 from jax import numpy as jnp
-from jax import lax
 from jaxtyping import Array, Bool, Int64
 
 
@@ -28,7 +27,7 @@ NO_SOL_TEXT = 'NO SOLUTION'
 
 
 @partial(jax.jit, static_argnames=['n'])
-def run_in_jax(n: int, a: Int64[Array, 'N']) -> Bool[Array, '1']:
+def run_in_jax(n: int, a: Int64[Array, ' N']) -> Bool[Array, '1']:
     size_matched = a.shape == (n,)
     elements_matched = jnp.bincount(a, length=n + 1) == (
             jnp.concat([jnp.zeros((1,)), jnp.ones((n,))]))

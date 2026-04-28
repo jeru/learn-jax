@@ -17,7 +17,6 @@ from functools import partial
 
 import jax
 from jax import numpy as jnp
-from jax import lax
 from jaxtyping import Array, Int64
 
 # Learn note: treat `n` as a static value (jax.jit compile-time known).
@@ -27,7 +26,7 @@ from jaxtyping import Array, Int64
 # jax.jit requires static array shape for each compilation, so a dynamic
 # `n` won't compile.
 @partial(jax.jit, static_argnames=["n"])
-def run_in_jax(n: int, a: Int64[Array, "NMinusOne"]) -> Int64[Array, "1"]:
+def run_in_jax(n: int, a: Int64[Array, " NMinusOne"]) -> Int64[Array, "1"]:
     b = jnp.arange(1, n + 1, dtype=jnp.int64)
     return jnp.bitwise_xor.reduce(jnp.concatenate([a, b], axis=0))
 

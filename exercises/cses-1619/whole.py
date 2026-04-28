@@ -9,15 +9,11 @@ import os
 os.environ["JAX_PLATFORMS"] = "cpu"
 os.environ["JAX_ENABLE_X64"] = "1"
 
-import collections
-from functools import partial
 import os.path
-from typing import Any
 
 import grain
 import jax
 from jax import numpy as jnp
-from jax import lax
 from jaxtyping import Array, Int64
 import numpy
 
@@ -29,7 +25,7 @@ from my_lib.tests_data_source import (
 
 
 @jax.jit
-def solve_in_jax(a: Int64[Array, 'N']) -> Int64[Array, '1']:
+def solve_in_jax(a: Int64[Array, ' N']) -> Int64[Array, '1']:
     n = a.shape[0]
     signed_times = jnp.sort(a * 2 + jnp.arange(n) % 2)
     signs = jnp.where(signed_times < 2, 0,

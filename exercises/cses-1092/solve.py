@@ -22,12 +22,11 @@ from functools import partial
 
 import jax
 from jax import numpy as jnp
-from jax import lax
-from jaxtyping import Array, Bool, Int64
+from jaxtyping import Array, Bool
 
 
 @partial(jax.jit, static_argnames=['n'])
-def run_in_jax(n: int) -> Bool[Array, 'N']:
+def run_in_jax(n: int) -> Bool[Array, ' N']:
     total = n * (n + 1) // 2
     if total % 2 == 1:
         return jnp.zeros((n,), dtype=jnp.bool_)

@@ -26,3 +26,8 @@ model-root = "src"
 [tool.uv_build]
 include = ["my_lib"]
 
+[tool.ruff.lint]
+extend-ignore = [
+    "F722",  # Incompatible with jaxtyping.
+    "E701",  # Allow "if cond: do" if in a single line.
+]

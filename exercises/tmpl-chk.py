@@ -12,25 +12,22 @@ os.environ["JAX_ENABLE_X64"] = "1"
 from functools import partial
 
 import jax
-from jax import numpy as jnp
-from jax import lax
 from jaxtyping import Array, Int64, Bool
 
 @partial(jax.jit, static_argnames=["n"])
-def run_in_jax(n: int, a: Int64[Array, "N"]) -> Bool[Array, "1"]:
+def run_in_jax(n: int, a: Int64[Array, " N"]) -> Bool[Array, "1"]:
     pass
 
 
 def main():
-    import numpy
     import sys
     infile, outfile, ansfile = sys.argv[1:]
     with open(infile) as f:
-        pass
+        del f
     with open(outfile) as f:
-        pass
+        del f
     with open(ansfile) as f:
-        pass
+        del f
     verify = bool(run_in_jax(...))
     if verify:
         print('OK')

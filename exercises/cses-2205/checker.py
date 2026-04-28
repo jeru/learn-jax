@@ -17,11 +17,10 @@ from functools import partial
 
 import jax
 from jax import numpy as jnp
-from jax import lax
 from jaxtyping import Array, Int64
 
 @partial(jax.jit, static_argnames=["n"])
-def run_in_jax(n: int, a: Int64[Array, "TwoToN"]) -> Int64[Array, "1"]:
+def run_in_jax(n: int, a: Int64[Array, " TwoToN"]) -> Int64[Array, "1"]:
     adj_dists = jnp.bitwise_count(jnp.delete(a, 0) - jnp.delete(a, -1))
     dist1 = jnp.all(adj_dists == 1)
     unique = jnp.max(jnp.bincount(a, length=2**n)) == 1
@@ -29,7 +28,6 @@ def run_in_jax(n: int, a: Int64[Array, "TwoToN"]) -> Int64[Array, "1"]:
 
 
 def main():
-    import numpy
     import sys
     infile, outfile, ansfile = sys.argv[1:]
     with open(infile) as f:

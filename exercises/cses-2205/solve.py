@@ -14,11 +14,10 @@ from functools import partial
 
 import jax
 from jax import numpy as jnp
-from jax import lax
 from jaxtyping import Array, Int64
 
 @partial(jax.jit, static_argnames=["n"])
-def run_in_jax(n: int) -> Int64[Array, "M"]:
+def run_in_jax(n: int) -> Int64[Array, " M"]:
     # With this recursion, the function will be compiled `n` times.
     if n == 0:
         return jnp.zeros((1,), dtype=jnp.int64)

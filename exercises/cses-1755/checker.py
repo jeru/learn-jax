@@ -13,11 +13,9 @@ import os
 os.environ["JAX_PLATFORMS"] = "cpu"
 os.environ["JAX_ENABLE_X64"] = "1"
 
-from functools import partial
 
 import jax
 from jax import numpy as jnp
-from jax import lax
 from jaxtyping import Array, Bool, Int8
 
 
@@ -26,8 +24,8 @@ MAX_CHAR = ord('Z') + 1
 
 
 @jax.jit
-def run_in_jax(in_str: Int8[Array, 'N'],
-               out_str: Int8[Array, 'N']) -> Bool[Array, '1']:
+def run_in_jax(in_str: Int8[Array, ' N'],
+               out_str: Int8[Array, ' N']) -> Bool[Array, '1']:
     in_freqs = jnp.bincount(in_str, length=MAX_CHAR)
     out_freqs = jnp.bincount(out_str, length=MAX_CHAR)
     chars_matched = jnp.all(in_freqs == out_freqs)
@@ -40,7 +38,6 @@ def str_to_jarr(s: str):
 
 
 def main():
-    import numpy
     import sys
     infile, outfile, ansfile = sys.argv[1:]
     with open(infile) as f:

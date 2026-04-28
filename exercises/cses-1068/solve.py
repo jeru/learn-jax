@@ -29,9 +29,9 @@ from jaxtyping import Array, Int64
 BLOCK_SIZE = 5
 
 
-NEXT_FN = lambda n: jnp.where(n < 2,
-                              0,
-                              jnp.where(n % 2 == 1, n * 3 + 1, n // 2))
+def _get_next(n):
+    return jnp.where(n < 2, 0,
+                     jnp.where(n % 2 == 1, n * 3 + 1, n // 2))
 
 ######################################################################
 # Scenario 1: `n` is provided asynchronously (the "data" flavor).
@@ -39,12 +39,12 @@ NEXT_FN = lambda n: jnp.where(n < 2,
 
 
 @jax.jit
-def run_in_jax1(n: Int64[Array, "1"]) -> Int64[Array, "SeqLen"]:
+def run_in_jax1(n: Int64[Array, "1"]) -> Int64[Array, " SeqLen"]:
     # Fixed size sequence to be filled.
     seq = jnp.concatenate([jnp.expand_dims(n, axis=0),
                            jnp.full((BLOCK_SIZE,), -1)])
     def body_fn(idx, seq):
-        return seq.at[idx + 1].set(NEXT_FN(seq[idx]))
+        return seq.at[idx + 1].set(_get_next(seq[idx]))
     computed_seq = lax.fori_loop(0, BLOCK_SIZE, body_fn, seq)
     return jnp.delete(computed_seq, 0)
 
@@ -64,7 +64,7 @@ def orchestrate1(n):
 
 
 @jax.jit
-def run_in_jax2(n: int) -> Int64[Array, "SeqLen"]:
+def run_in_jax2(n: int) -> Int64[Array, " SeqLen"]:
     seq = jnp.concatenate([jnp.expand_dims(n, axis=0),
                            jnp.full((BLOCK_SIZE,), -1)])
     def cond_fn(val):
@@ -72,7 +72,7 @@ def run_in_jax2(n: int) -> Int64[Array, "SeqLen"]:
         return idx < BLOCK_SIZE
     def body_fn(val):
         idx, seq = val
-        return (idx + 1, seq.at[idx + 1].set(NEXT_FN(seq[idx])))
+        return (idx + 1, seq.at[idx + 1].set(_get_next(seq[idx])))
     _, computed_seq = lax.while_loop(cond_fn, body_fn, (0, seq))
     return jnp.delete(computed_seq, 0)
 

@@ -9,11 +9,9 @@ import os
 os.environ["JAX_PLATFORMS"] = "cpu"
 os.environ["JAX_ENABLE_X64"] = "1"
 
-from functools import partial
 
 import jax
 from jax import numpy as jnp
-from jax import lax
 from jaxtyping import Array, Int64, Bool
 
 
@@ -22,7 +20,7 @@ MAX_N = 100
 
 @jax.jit
 def run_in_jax(plans: Int64[Array, "C 3"],
-               ans: Bool[Array, "C"],
+               ans: Bool[Array, " C"],
                outs: Int64[Array, "C 2 M"],
 ) -> Bool[Array, "1"]:
     # (C, M)

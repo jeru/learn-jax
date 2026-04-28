@@ -18,7 +18,6 @@ from functools import partial
 
 import jax
 from jax import numpy as jnp
-from jax import lax
 from jaxtyping import Array, Bool, Int64
 
 
@@ -26,7 +25,8 @@ NO_SOL_TEXT = 'NO'
 
 
 @partial(jax.jit, static_argnames=['n'])
-def run_in_jax(n: int, a1: Int64[Array, 'M'], a2: Int64[Array, 'N']) -> Bool[Array, '1']:
+def run_in_jax(n: int, a1: Int64[Array, ' M'],
+               a2: Int64[Array, ' N']) -> Bool[Array, '1']:
     elements_matched = jnp.bincount(jnp.concat([a1, a2]), length=n + 1) == (
             jnp.concat([jnp.zeros((1,)), jnp.ones((n,))]))
     same_sum = (jnp.sum(a1) - jnp.sum(a2) == 0)

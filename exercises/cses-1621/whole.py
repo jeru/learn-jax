@@ -9,18 +9,13 @@ import os
 os.environ["JAX_PLATFORMS"] = "cpu"
 os.environ["JAX_ENABLE_X64"] = "1"
 
-import collections
-from functools import partial
 import glob
-import itertools
 import os.path
-from typing import Any
 
 import grain
 import grain.sources
 import jax
 from jax import numpy as jnp
-from jax import lax
 from jaxtyping import Array, Int64
 import numpy
 
@@ -55,7 +50,7 @@ class MultiTextTestDataSource(
 
 
 @jax.jit
-def solve_in_jax(a: Int64[Array, 'N']) -> Int64[Array, '1']:
+def solve_in_jax(a: Int64[Array, ' N']) -> Int64[Array, '1']:
     a = jnp.unique(a, size=a.shape[0], fill_value=-1)
     return jnp.count_nonzero(a != -1)
 

@@ -7,8 +7,6 @@ import os
 os.environ["JAX_PLATFORMS"] = "cpu"
 os.environ["JAX_ENABLE_X64"] = "1"
 
-import collections
-from functools import partial
 import glob
 import os.path
 from typing import Any
@@ -16,7 +14,6 @@ from typing import Any
 import grain
 import jax
 from jax import numpy as jnp
-from jax import lax
 from jaxtyping import Array, Int64
 import numpy
 
@@ -66,7 +63,7 @@ MAX_N = 100
 
 
 @jax.jit
-def solve_in_jax(n: int) -> Int64[Array, 'N']:
+def solve_in_jax(n: int) -> Int64[Array, ' N']:
     a = jnp.arange(MAX_N)
     unmasked = jnp.expand_dims(a, 0) ^ jnp.expand_dims(a, 1)
     m1 = a < n
