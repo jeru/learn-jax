@@ -52,4 +52,5 @@ These are where the complexity is.
 But the output side: a `DatasetIterator` that spit out batches of data and fed into the `@jax.jit`-wrapped function.
 It is just a python iterator but resumable: its internal state can be dumped to disk and loaded back.
 
-Start with consumer side only and do some extra exercises by solving algorithmic problems, _input handling via a custom `DatasetIterator` through a bunch of text files_. Listed [here](exercises/jax-grain1.md).
+Start with consumer side only and do some extra exercises by solving algorithmic problems, input handling via a custom `DatasetIterator` through a bunch of text files. Then move the usage to closer and closer to what real training data processing looks like (randomized, sharded, pause and resume, etc.). Listed [here](exercises/jax-grain1.md).
+
