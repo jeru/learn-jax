@@ -1,5 +1,5 @@
 [project]
-name = "learn-jax"
+name = "learn_jax"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -11,3 +11,18 @@ dependencies = [
     "numpy>=2.4.4",
     "typeguard>=4.5.1",
 ]
+
+[build-system]
+requires = ["uv_build>=0.11.7,<0.12.0"]
+build-backend = "uv_build"
+
+[tool.uv]
+package = true
+
+[tool.uv.build-backend]
+module-name = "my_lib"
+model-root = "src"
+
+[tool.uv_build]
+include = ["my_lib"]
+

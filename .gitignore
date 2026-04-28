@@ -1,6 +1,7 @@
 .venv/
 # Temporary files.
 tmp.out
+__pycache__
 # Testdata downloaded from cses.fi. Don't check in.
 tests.zip
 testdata/
