@@ -18,8 +18,15 @@ Make this input as a `DataSource` to use the higher-level, fancier grain tooling
 
 [Whole program](cses-1621/whole.py).
 
-## CSES-1619 (https://cses.fi/problemset/task/1619) (size(unique(...)))
+## CSES-1619 (https://cses.fi/problemset/task/1619) (interval overlapping)
 
 Make the DataSource a [separate library](../src/my_lib/tests_data_source.py) for reuse.
 
 [Whole program](cses-1619/whole.py).
+
+## CSES-1640 (https://cses.fi/problemset/task/1640) (two values from array)
+
+Now move to use grain Transformation for input data processing.
+
+[Whole program](cses-1640/whole.py).
+Noticeably now `grain.load` is also supplied a list of transformations.
