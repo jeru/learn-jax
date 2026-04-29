@@ -38,3 +38,13 @@ Formalize data padding a little: explicit input mask (boolean array) to tell whi
 [Whole program](cses-1643/whole.py).
 Noticeably, now the padding transformation supplies also the input mask.
 Furthermore, the algorithm now can rely on the mask to recognize padded elements.
+
+## Add batching - CSES-1074 (https://cses.fi/problemset/task/1074) (median)
+
+Now add batching. Pointless for the current functionality but is needed for training.
+
+[Whole program](cses-1074/whole.py).
+The padding is now replaced with a Batch with a custom batching function that deals with both length alignment and pad-to-power2-length in one go.
+
+The batching function isn't general enough to be moved into the library, though.
+Need to consider that some fields don't got to jax at all thus aren't padded to batch size.
