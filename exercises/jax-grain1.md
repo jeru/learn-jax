@@ -48,3 +48,16 @@ The padding is now replaced with a Batch with a custom batching function that de
 
 The batching function isn't general enough to be moved into the library, though.
 Need to consider that some fields don't got to jax at all thus aren't padded to batch size.
+
+## Batching as library function - CSES-2183 (https://cses.fi/problemset/task/2183) (DP)
+
+Plan to make the batching function general:
+* There is a list of `jax` fields in the `dict` of transformation.
+* These fields must be numpy.array with the same dimension, each dimension has non-zero size (but can be different). They will be padded up to the same shape.
+* If there is not enough to fill a batch, the batching dimension will also be padded up.
+* An extra `/mask` field will be added to each field to indicate whether the value is padded or original.
+* Fields not mentioned at all are treated as non-`jax` fields, they will be simply put together into a python list, without any padding (can be shorter if not a full batch).
+
+The library [function](../src/my_lib/batching.py). And the [whole program](cses-2183/whole.py).
+
+(Complexity really builds up quickly once libraries emerge. A lot of generality considerations in libraries.)
