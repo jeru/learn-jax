@@ -61,3 +61,12 @@ Plan to make the batching function general:
 The library [function](../src/my_lib/batching.py). And the [whole program](cses-2183/whole.py).
 
 (Complexity really builds up quickly once libraries emerge. A lot of generality considerations in libraries.)
+
+## Checkpoint+resume - CSES-3421 (https://cses.fi/problemset/task/3421)
+
+Add `orbax` as the checkpoint management.
+Every 3 batches, will checkpoint and take a break.
+
+[Whole program](cses-3421/whole.py).
+Need to repeatedly running `uv run whole.py testdata/` until all tests are finished.
+Rerunning from scratch need deletion of `testdata/ckpt/`.

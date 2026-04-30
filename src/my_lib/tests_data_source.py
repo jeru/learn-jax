@@ -33,6 +33,10 @@ class TestsDataSource(grain.sources.RandomAccessDataSource[dict]):
             content2 = f.read()
         return {INPUT_FIELDNAME: content1, ANSWER_FIELDNAME: content2}
 
+    def __repr__(self) -> str:
+        return str(('TestsDataSource', self._file_bases, self._in_ext,
+                    self._ans_ext))
+
 
 def _get_tests_basenames(directory, ext):
     files = glob.glob(os.path.join(directory, '*' + ext))

@@ -218,6 +218,9 @@ When in higher dimensions, eg., in 2D, a leading/trailing row/column will be rem
 [`unique_inverse`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.unique_inverse.html#jax.numpy.unique_inverse "jax.numpy.unique_inverse")(x, /, *[, size, fill_value])
 [`unique_values`](https://docs.jax.dev/en/latest/_autosummary/jax.numpy.unique_values.html#jax.numpy.unique_values "jax.numpy.unique_values")(x, /, *[, size, fill_value])
 : remove duplicated values in an array. Feels like a lot of versions of functions squeezed into one function signature. Unless `size` is specified, very unfriendly to `jit`.
+: take unique values, can also optionally return counts, inverses and values.
+WARNING: axis for slicing, not for parallelizing.
+Eg., for a 3D array with axis=1, each value to unique-ify is a 2D array.
 
 ## Debug-related
 
