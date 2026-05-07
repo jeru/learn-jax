@@ -10,12 +10,14 @@ To start an interactive:
 uv run python
 ```
 
-## jax.numpy: (nearly) everything algorithmic
+## Algorithmic part around `jax.numpy`
+
+### `jax.numpy`: (nearly) everything algorithmic
 
 This is the main math / data-processing (i.e., algorithmic) interface.
 [Went through](jnp/overview.md) all of the functions there.
 
-## jax.lax (and jax.vmap)
+### `jax.lax` (and `jax.vmap`): extend a little bit
 
 A more primitive layer below `jax.numpy` (and `jax.scipi`).
 
@@ -24,7 +26,7 @@ It has something that should be, by application, in `jax.numpy` but cannot, pres
 
 Of course, `jax.numpy` also has things that feel lower-level than it should, noticeably `ufunc` and `vectorize`. These feel more natural to stay with `jax.vmap` and all the `jax.lax`'s [parallel operators](https://docs.jax.dev/en/latest/jax.lax.html#parallel-operators).
 
-## Some algorithmic exercises
+### Some exercises
 
 Pick some simple algorithm tasks (competition programming / interview questions).
 They are designed for CPU solutions so mostly won't fit performance-wise (seriously sequential and dynamic).
@@ -32,7 +34,7 @@ But can provide enough variety to cover some basic uses.
 
 Listed [here](exercises/jax-only.md).
 
-## grain
+### Add `grain` for input processing
 
 Now add [`grain`](https://google-grain.readthedocs.io/en/latest/index.html) to the recipe.
 
@@ -48,3 +50,10 @@ It is just a python iterator but resumable: its internal state can be dumped to 
 
 Start with consumer side only and do some extra exercises by solving algorithmic problems, input handling via a custom `DatasetIterator` through a bunch of text files. Then move the usage to closer and closer to what real training data processing looks like (randomized, sharded, pause and resume, etc.). Listed [here](exercises/jax-grain1.md).
 
+## Toy model
+
+Goal: Build a basic understanding of the training with jax ecology tools end-to-end.
+
+Plan: Start with a first version with everything (model, loss function, gradient descent) in raw `jax`. Then gradually replace each component with an existing library (`flax`, `optax`, etc.).
+
+[Here](src/proj_0_toy_model/toy.md).
