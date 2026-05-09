@@ -2,7 +2,7 @@
 
 ## Version 1: raw jax-based.
 
-[Code](whole.py). Noticeably,
+[Code](../../../../blob/2c56bd1fe6acf4e2d81dd628a96b149f0844bb83/src/proj_0_toy_model/whole.py). Noticeably,
 ```python
 @jax.jit
 def loss(x, params): ...
