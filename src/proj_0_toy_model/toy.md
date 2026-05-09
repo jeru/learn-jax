@@ -19,7 +19,7 @@ for k, v in vg[1].items():
 
 ## Version 2: generate "training" data with grain.
 
-[Code](whole.py). Used the grain `Dataset` interface to ease the generation.
+[Code](/../../commit/f24dbe2272d28291a7dd3d38d1597a43318ef85b). Used the grain `Dataset` interface to ease the generation.
 The `DataLoader` needs a user supplying a random generator for each input data, so quite cumbersome to use.
 
 Added functionality:
