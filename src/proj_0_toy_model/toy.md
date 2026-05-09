@@ -2,7 +2,7 @@
 
 ## Version 1: raw jax-based.
 
-[Code](v1_all_in_one.py). Noticeably,
+[Code](whole.py). Noticeably,
 ```python
 @jax.jit
 def loss(x, params): ...
