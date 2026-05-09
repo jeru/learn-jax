@@ -1,21 +1,24 @@
 # Copyright 2026 Cheng Sheng
 # SPDX-License-Identifier: Apache-2.0
-#
-# First version: everything in raw jax.
+# Second version: add grain for "training" data generation.
 
 import os
 os.environ["JAX_PLATFORMS"] = "cpu"
 os.environ["JAX_ENABLE_X64"] = "1"
 
+import grain
+import grain.transforms
 import jax.nn.initializers
 from jax import numpy as jnp
 import jax.random
 from jaxtyping import Array, Float
+import numpy as np
 
 
 def linear(x: Float[Array, " D"], *, w: Float[Array, "D R"],
            b: Float[Array, " R"]) -> Float[Array, " R"]:
     return x * w + b
+
 
 def model(x: Float[Array, " D"], params: dict) -> Float[Array, " R"]:
     w: Float[Array, "D R"] = params["w"]
@@ -46,11 +49,14 @@ def main():
     # Compute the gradient against the params, not `x`.
     value_and_grad_fn = jax.value_and_grad(loss, argnums=1)
     lr = 1e-2
-    x_sampler = jax.nn.initializers.uniform(10)
+
+    class VecGen(grain.transforms.RandomMap):
+        def random_map(self, element, rng: np.random.Generator):
+            return jnp.array(rng.random((2,)) * 10, dtype=jnp.float32)
+    ds = grain.MapDataset.range(1000).random_map(VecGen(), seed=42)
+
     # Feed in random "training" data.
-    for step in range(1000):
-        rng_key, rng_subkey = jax.random.split(rng_key)
-        x = x_sampler(rng_subkey, (2,), jnp.float32)
+    for step, x in enumerate(ds):
         vg = value_and_grad_fn(x, params)
         if step % 20 == 0:
             print(f'Step {step}: x={x}, loss={vg[0]}, grad={vg[1]}')
