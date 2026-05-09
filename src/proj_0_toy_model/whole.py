@@ -1,6 +1,7 @@
 # Copyright 2026 Cheng Sheng
 # SPDX-License-Identifier: Apache-2.0
-# Second version: add grain for "training" data generation.
+#
+# Toy model to test out the whole training flow.
 
 import os
 os.environ["JAX_PLATFORMS"] = "cpu"
@@ -17,7 +18,7 @@ import numpy as np
 
 def linear(x: Float[Array, " D"], *, w: Float[Array, "D R"],
            b: Float[Array, " R"]) -> Float[Array, " R"]:
-    return x * w + b
+    return w @ x + b
 
 
 def model(x: Float[Array, " D"], params: dict) -> Float[Array, " R"]:
