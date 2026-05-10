@@ -16,12 +16,12 @@ from jaxtyping import Array, Float
 import numpy as np
 
 
-def linear(x: Float[Array, " D"], *, w: Float[Array, "D R"],
-           b: Float[Array, " R"]) -> Float[Array, " R"]:
-    return w @ x + b
+def linear(x: Float[Array, "B D"], *, w: Float[Array, "D R"],
+           b: Float[Array, " R"]) -> Float[Array, "B R"]:
+    return x @ w + b
 
 
-def model(x: Float[Array, " D"], params: dict) -> Float[Array, " R"]:
+def model(x: Float[Array, "B D"], params: dict) -> Float[Array, "B R"]:
     w: Float[Array, "D R"] = params["w"]
     b: Float[Array, " R"] = params["b"]
     return linear(x, w=w, b=b)
@@ -32,12 +32,12 @@ def ground_truth(x: Float[Array, " D"]) -> Float[Array, " R"]:
 
 
 @jax.jit
-def loss(x: Float[Array, " D"], params: dict) -> float:
+def loss(x: Float[Array, "B D"], params: dict) -> float:
     value = model(x, params)
     expected = ground_truth(x)
     diff = value - expected
-    # Square L2 norm as loss function.
-    return jnp.sum(diff * diff)
+    # Square L2 norm as loss function; average over batch.
+    return jnp.mean(jnp.sum(diff * diff, axis=1), axis=0)
 
 
 def main():
@@ -54,13 +54,13 @@ def main():
     class VecGen(grain.transforms.RandomMap):
         def random_map(self, element, rng: np.random.Generator):
             return jnp.array(rng.random((2,)) * 10, dtype=jnp.float32)
-    ds = grain.MapDataset.range(1000).random_map(VecGen(), seed=42)
+    ds = grain.MapDataset.range(10000).random_map(VecGen(), seed=42)
+    ds = ds.batch(10)
 
     # Feed in random "training" data.
     for step, x in enumerate(ds):
         vg = value_and_grad_fn(x, params)
-        if step % 20 == 0:
-            print(f'Step {step}: x={x}, loss={vg[0]}, grad={vg[1]}')
+        print(f'Step {step}: x={x}, loss={vg[0]}, grad={vg[1]}')
         # Naive gradient descent.
         for k, v in vg[1].items():
             params[k] -= v * lr

@@ -32,3 +32,9 @@ ds = grain.MapDataset.range(1000).random_map(VecGen(), seed=42)
 for step, x in enumerate(ds):
     ...
 ```
+
+## Version 3: add batch processing
+
+[Code](whoe.py).
+Seems worse comparing to a 10-batch to a single datapoint?
+Too much variance eliminated by batching?
