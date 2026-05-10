@@ -33,8 +33,8 @@ for step, x in enumerate(ds):
     ...
 ```
 
-## Version 3: add batch processing
+## Version 3: add batch processing.
 
-[Code](whoe.py).
+[Code](/../../commit/a02c07e3a7fd552c1d7aa157461ac3027469fd5e).
 Seems worse comparing to a 10-batch to a single datapoint?
 Too much variance eliminated by batching?
