@@ -14,6 +14,7 @@ from jax import numpy as jnp
 import jax.random
 from jaxtyping import Array, Float
 import numpy as np
+import optax
 
 
 def linear(x: Float[Array, "B D"], *, w: Float[Array, "D R"],
@@ -51,6 +52,10 @@ def main():
     value_and_grad_fn = jax.value_and_grad(loss, argnums=1)
     lr = 1e-2
 
+    # Optimizer
+    optimizer = optax.adam(lr)
+    opt_state = optimizer.init(params)
+
     class VecGen(grain.transforms.RandomMap):
         def random_map(self, element, rng: np.random.Generator):
             return jnp.array(rng.random((2,)) * 10, dtype=jnp.float32)
@@ -61,9 +66,9 @@ def main():
     for step, x in enumerate(ds):
         vg = value_and_grad_fn(x, params)
         print(f'Step {step}: x={x}, loss={vg[0]}, grad={vg[1]}')
-        # Naive gradient descent.
-        for k, v in vg[1].items():
-            params[k] -= v * lr
+        # Optax-based desecent.
+        updates, opt_state = optimizer.update(vg[1], opt_state)
+        params = optax.apply_updates(params, updates)
     print(f'Final: w={params["w"]}, b={params["b"]}')
 
 

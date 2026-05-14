@@ -38,3 +38,8 @@ for step, x in enumerate(ds):
 [Code](/../../commit/a02c07e3a7fd552c1d7aa157461ac3027469fd5e).
 Seems worse comparing to a 10-batch to a single datapoint?
 Too much variance eliminated by batching?
+
+## Version 4: Use `optax` instead of manual optimizer.
+
+Quite easy to start using by following its tutorial.
+A lot of knobs seems to be "hidden" as default arguments.
