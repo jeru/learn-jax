@@ -41,5 +41,6 @@ Too much variance eliminated by batching?
 
 ## Version 4: Use `optax` instead of manual optimizer.
 
+[Code](/../../commit/9fd67f06f0c97b30d3885333f86609cd8ad9ba5d).
 Quite easy to start using by following its tutorial.
 A lot of knobs seems to be "hidden" as default arguments.
